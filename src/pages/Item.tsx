@@ -12,10 +12,19 @@ type EpisodeItemT = {
   air_date: string
   episode: string
 }
+type CharactersItemT = {
+  id: number
+  name: string
+  status: string
+  species: string
+  type: string
+  gender: string
+  image: string
+}
 
-type AllPossibleTypes = EpisodeItemT | LocationItemT
+type AllPossibleTypes = EpisodeItemT | LocationItemT | CharactersItemT
 
-type DataTypesT = 'location' | 'episode'
+type DataTypesT = 'location' | 'episode' | 'characters'
 
 function getItem<T extends { id: number }>(
   items: T[],
@@ -56,6 +65,10 @@ function ItemLayout({
     return <EpisodeLayout item={item} />
   }
 
+  if (type === 'characters') {
+    return <CharacterLayout item={item} />
+  }
+
   return null
 }
 
@@ -74,6 +87,17 @@ function EpisodeLayout({ item }: { item: EpisodeItemT }) {
       <p>Название серии: {item.name}</p>
       <p>Дата выхода серии: {item.air_date}</p>
       <p>Код эпизода: {item.episode}</p>
+    </div>
+  )
+}
+function CharacterLayout({ item }: { item: CharactersItemT }) {
+  return (
+    <div>
+      <p>Имя: {item.name}</p>
+      <p>Статус: {item.status}</p>
+      <p>Вид: {item.species}</p>
+      <p>Пол: {item.gender}</p>
+      <p>Фото: {item.image}</p>
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
-import Characters from './pages/Characters'
 import ListItems from './pages/ListItems'
 import locations from './assets/location.json'
 import episodes from './assets/episode.json'
+import characters from './assets/characters.json'
 import Item from './pages/Item'
 
 function App() {
@@ -39,7 +39,13 @@ function App() {
             element={<Item items={locations} type='location' />}
           />
         </Route>
-        <Route path='/characters' element={<Characters />} />
+        <Route path='/characters'>
+          <Route index element={<ListItems items={characters} />} />
+          <Route
+            path=':id'
+            element={<Item items={characters} type='characters' />}
+          />
+        </Route>
       </Routes>
     </div>
   )
