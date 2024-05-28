@@ -1,13 +1,10 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
-import Episodes from './pages/Episodes'
-import Locations from './pages/Locations'
 import Characters from './pages/Characters'
-import Episode from './pages/Episode'
-import Location from './pages/Location'
 import ListItems from './pages/ListItems'
-import locations from '../assets/location.json'
-import episodes from '../assets/episode.json'
+import locations from './assets/location.json'
+import episodes from './assets/episode.json'
+import Item from './pages/Item'
 
 function App() {
   return (
@@ -30,11 +27,17 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/episodes'>
           <Route index element={<ListItems items={episodes} />} />
-          <Route path=':id' element={<Episode />} />
+          <Route
+            path=':id'
+            element={<Item items={episodes} type='episode' />}
+          />
         </Route>
         <Route path='/locations'>
           <Route index element={<ListItems items={locations} />} />
-          <Route path=':id' element={<Location />} />
+          <Route
+            path=':id'
+            element={<Item items={locations} type='location' />}
+          />
         </Route>
         <Route path='/characters' element={<Characters />} />
       </Routes>
