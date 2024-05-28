@@ -5,6 +5,9 @@ import Locations from './pages/Locations'
 import Characters from './pages/Characters'
 import Episode from './pages/Episode'
 import Location from './pages/Location'
+import ListItems from './pages/ListItems'
+import locations from '../assets/location.json'
+import episodes from '../assets/episode.json'
 
 function App() {
   return (
@@ -26,11 +29,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/episodes'>
-          <Route index element={<Episodes />} />
+          <Route index element={<ListItems items={episodes} />} />
           <Route path=':id' element={<Episode />} />
         </Route>
         <Route path='/locations'>
-          <Route index element={<Locations />} />
+          <Route index element={<ListItems items={locations} />} />
           <Route path=':id' element={<Location />} />
         </Route>
         <Route path='/characters' element={<Characters />} />
