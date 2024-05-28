@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 type LocationItemT = {
   id: number
@@ -24,7 +24,7 @@ type CharactersItemT = {
 
 type AllPossibleTypes = EpisodeItemT | LocationItemT | CharactersItemT
 
-type DataTypesT = 'location' | 'episode' | 'characters'
+type DataTypesT = 'locations' | 'episodes' | 'characters'
 
 function getItem<T extends { id: number }>(
   items: T[],
@@ -57,11 +57,11 @@ function ItemLayout({
   item: AllPossibleTypes
   type: DataTypesT
 }) {
-  if (type === 'location') {
+  if (type === 'locations') {
     return <LocationLayout item={item} />
   }
 
-  if (type === 'episode') {
+  if (type === 'episodes') {
     return <EpisodeLayout item={item} />
   }
 
@@ -74,31 +74,40 @@ function ItemLayout({
 
 function LocationLayout({ item }: { item: LocationItemT }) {
   return (
-    <div>
-      <p>Название: {item.name}</p>
-      <p>Тип: {item.type}</p>
-      <p>Измерение: {item.dimension}</p>
-    </div>
+    <>
+      <div>
+        <p>Название: {item.name}</p>
+        <p>Тип: {item.type}</p>
+        <p>Измерение: {item.dimension}</p>
+      </div>
+      <Link to='/locations'>Вернуться к выбору локации</Link>
+    </>
   )
 }
 function EpisodeLayout({ item }: { item: EpisodeItemT }) {
   return (
-    <div>
-      <p>Название серии: {item.name}</p>
-      <p>Дата выхода серии: {item.air_date}</p>
-      <p>Код эпизода: {item.episode}</p>
-    </div>
+    <>
+      <div>
+        <p>Название серии: {item.name}</p>
+        <p>Дата выхода серии: {item.air_date}</p>
+        <p>Код эпизода: {item.episode}</p>
+      </div>
+      <Link to='/episodes'>Вернуться к выбору эпизода</Link>
+    </>
   )
 }
 function CharacterLayout({ item }: { item: CharactersItemT }) {
   return (
-    <div>
-      <p>Имя: {item.name}</p>
-      <p>Статус: {item.status}</p>
-      <p>Вид: {item.species}</p>
-      <p>Пол: {item.gender}</p>
-      <p>Фото: {item.image}</p>
-    </div>
+    <>
+      <div>
+        <p>Имя: {item.name}</p>
+        <p>Статус: {item.status}</p>
+        <p>Вид: {item.species}</p>
+        <p>Пол: {item.gender}</p>
+        <p>Фото: {item.image}</p>
+      </div>
+      <Link to='/characters'>Вернуться к выбору персонажа</Link>
+    </>
   )
 }
 

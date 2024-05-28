@@ -11,16 +11,16 @@ function App() {
     <div>
       <ul>
         <li>
-          <Link to='/'>Main</Link>
+          <Link to='/'>Главная</Link>
         </li>
         <li>
-          <Link to='/episodes'>Episodes</Link>
+          <Link to='/episodes'>Эпизоды</Link>
         </li>
         <li>
-          <Link to='/characters'>Characters</Link>
+          <Link to='/characters'>Персонажи</Link>
         </li>
         <li>
-          <Link to='/locations'>Locations</Link>
+          <Link to='/locations'>Локации</Link>
         </li>
       </ul>
       <Routes>
@@ -29,14 +29,14 @@ function App() {
           <Route index element={<ListItems items={episodes} />} />
           <Route
             path=':id'
-            element={<Item items={episodes} type='episode' />}
+            element={<Item items={episodes} type='episodes' />}
           />
         </Route>
         <Route path='/locations'>
           <Route index element={<ListItems items={locations} />} />
           <Route
             path=':id'
-            element={<Item items={locations} type='location' />}
+            element={<Item items={locations} type='locations' />}
           />
         </Route>
         <Route path='/characters'>
