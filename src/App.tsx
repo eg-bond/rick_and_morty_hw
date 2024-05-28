@@ -4,6 +4,7 @@ import Episodes from './pages/Episodes'
 import Locations from './pages/Locations'
 import Characters from './pages/Characters'
 import Episode from './pages/Episode'
+import Location from './pages/Location'
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
           <Link to='/episodes'>Episodes</Link>
         </li>
         <li>
-          <Link to='/locations'>Characters</Link>
+          <Link to='/characters'>Characters</Link>
         </li>
         <li>
-          <Link to='/characters'>Locations</Link>
+          <Link to='/locations'>Locations</Link>
         </li>
       </ul>
       <Routes>
@@ -28,7 +29,10 @@ function App() {
           <Route index element={<Episodes />} />
           <Route path=':id' element={<Episode />} />
         </Route>
-        <Route path='/locations' element={<Locations />} />
+        <Route path='/locations'>
+          <Route index element={<Locations />} />
+          <Route path=':id' element={<Location />} />
+        </Route>
         <Route path='/characters' element={<Characters />} />
       </Routes>
     </div>

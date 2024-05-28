@@ -13,7 +13,7 @@ function Episodes() {
   return (
     <div>
       {episodes.map(item => (
-        <Item name={item.name} to={item.id.toString()} />
+        <Item key={item.id} name={item.name} to={item.id.toString()} />
       ))}
     </div>
   )
