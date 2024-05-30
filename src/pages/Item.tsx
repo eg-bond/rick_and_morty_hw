@@ -1,50 +1,25 @@
 import { Link, useOutletContext, useParams } from 'react-router-dom'
+import {
+  AllPossibleDataArraysT,
+  AllPossibleDataT,
+  CharactersDataT,
+  EpisodeDataT,
+  LocationDataT,
+  OutletContextT,
+  RoutesTypesT,
+} from './types'
 
-type LocationItemT = {
-  id: number
-  name: string
-  type: string
-  dimension: string
-}
-type EpisodeItemT = {
-  id: number
-  name: string
-  air_date: string
-  episode: string
-}
-type CharactersItemT = {
-  id: number
-  name: string
-  status: string
-  species: string
-  type: string
-  gender: string
-  image: string
-}
-
-type AllPossibleTypes = EpisodeItemT | LocationItemT | CharactersItemT
-
-type DataTypesT = 'locations' | 'episodes' | 'characters'
-
-function getItem<T extends { id: number }>(
-  items: T[],
+function getDataItem(
+  items: AllPossibleDataArraysT,
   id: string | undefined
-): T | undefined {
+): AllPossibleDataT | undefined {
   return items.find(item => item.id.toString() === id)
 }
-//<T extends AllPossibleTypes>
-// {
-//   items,
-//   type,
-// }: {
-//   items: T[]
-//   type: DataTypesT
-// }
 
 function Item() {
   const { id } = useParams<{ id: string }>()
-  const { items, type } = useOutletContext()
-  const item = getItem(items, id)
+  const { items, type } = useOutletContext<OutletContextT>()
+  const item = getDataItem(items, id)
 
   if (!item) {
     return null
@@ -57,25 +32,25 @@ function ItemLayout({
   item,
   type,
 }: {
-  item: AllPossibleTypes
-  type: DataTypesT
+  item: AllPossibleDataT
+  type: RoutesTypesT
 }) {
   if (type === 'locations') {
-    return <LocationLayout item={item} />
+    return <LocationLayout item={item as LocationDataT} />
   }
 
   if (type === 'episodes') {
-    return <EpisodeLayout item={item} />
+    return <EpisodeLayout item={item as EpisodeDataT} />
   }
 
   if (type === 'characters') {
-    return <CharacterLayout item={item} />
+    return <CharacterLayout item={item as CharactersDataT} />
   }
 
   return null
 }
 
-function LocationLayout({ item }: { item: LocationItemT }) {
+function LocationLayout({ item }: { item: LocationDataT }) {
   return (
     <>
       <div>
@@ -87,7 +62,7 @@ function LocationLayout({ item }: { item: LocationItemT }) {
     </>
   )
 }
-function EpisodeLayout({ item }: { item: EpisodeItemT }) {
+function EpisodeLayout({ item }: { item: EpisodeDataT }) {
   return (
     <>
       <div>
@@ -99,7 +74,7 @@ function EpisodeLayout({ item }: { item: EpisodeItemT }) {
     </>
   )
 }
-function CharacterLayout({ item }: { item: CharactersItemT }) {
+function CharacterLayout({ item }: { item: CharactersDataT }) {
   return (
     <>
       <div>
