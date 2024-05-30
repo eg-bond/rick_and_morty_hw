@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useOutletContext, useParams } from 'react-router-dom'
 
 type LocationItemT = {
   id: number
@@ -30,17 +30,20 @@ function getItem<T extends { id: number }>(
   items: T[],
   id: string | undefined
 ): T | undefined {
-  return items.find(ep => ep.id.toString() === id)
+  return items.find(item => item.id.toString() === id)
 }
+//<T extends AllPossibleTypes>
+// {
+//   items,
+//   type,
+// }: {
+//   items: T[]
+//   type: DataTypesT
+// }
 
-function Item<T extends AllPossibleTypes>({
-  items,
-  type,
-}: {
-  items: T[]
-  type: DataTypesT
-}) {
+function Item() {
   const { id } = useParams<{ id: string }>()
+  const { items, type } = useOutletContext()
   const item = getItem(items, id)
 
   if (!item) {

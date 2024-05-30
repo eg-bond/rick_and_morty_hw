@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Outlet, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
 import ListItems from './pages/ListItems'
 import locations from './assets/location.json'
@@ -25,26 +25,27 @@ function App() {
       </ul>
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/episodes'>
-          <Route index element={<ListItems items={episodes} />} />
-          <Route
-            path=':id'
-            element={<Item items={episodes} type='episodes' />}
-          />
+        <Route
+          path='/episodes'
+          element={<Outlet context={{ items: episodes, type: 'episodes' }} />}>
+          <Route index element={<ListItems />} />
+          <Route path=':id' element={<Item />} />
         </Route>
-        <Route path='/locations'>
-          <Route index element={<ListItems items={locations} />} />
-          <Route
-            path=':id'
-            element={<Item items={locations} type='locations' />}
-          />
+        <Route
+          path='/locations'
+          element={
+            <Outlet context={{ items: locations, type: 'locations' }} />
+          }>
+          <Route index element={<ListItems />} />
+          <Route path=':id' element={<Item />} />
         </Route>
-        <Route path='/characters'>
-          <Route index element={<ListItems items={characters} />} />
-          <Route
-            path=':id'
-            element={<Item items={characters} type='characters' />}
-          />
+        <Route
+          path='/characters'
+          element={
+            <Outlet context={{ items: characters, type: 'characters' }} />
+          }>
+          <Route index element={<ListItems />} />
+          <Route path=':id' element={<Item />} />
         </Route>
       </Routes>
     </div>

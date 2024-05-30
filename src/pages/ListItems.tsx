@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 
 type ItemT = {
   id: number
@@ -8,14 +8,15 @@ type ItemT = {
 }
 
 type SortingTypeT = 'ASC' | 'DESC'
-
-function ListItems({ items }: { items: ItemT[] }) {
+// { items }: { items: ItemT[] }
+function ListItems() {
+  const { items } = useOutletContext()
   const [list, setList] = useState(items)
 
   function sort(type: SortingTypeT) {
     const sorted = [...items].sort((a, b) => {
-      const dateA = new Date(a.created)
-      const dateB = new Date(b.created)
+      const dateA = Number(new Date(a.created))
+      const dateB = Number(new Date(b.created))
       return type === 'ASC' ? dateA - dateB : dateB - dateA
     })
     setList(sorted)
