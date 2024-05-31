@@ -6,6 +6,7 @@ import Main from './pages/Main'
 import ListData from './pages/ListData'
 import SelectedDataItem from './pages/SelectedDataItem'
 import { DataPagesURLs } from './types'
+import NotFound from './pages/NotFound'
 
 export default function Routing() {
   const dataPages = [
@@ -17,6 +18,8 @@ export default function Routing() {
   return (
     <Routes>
       <Route path='/' element={<Main />} />
+      <Route path='*' element={<NotFound />} />
+
       {dataPages.map(({ url, data }) => (
         <Route
           key={url}
