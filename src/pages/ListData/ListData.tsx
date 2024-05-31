@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
 import { SortingTypeT, sort } from '../../helpers'
 import s from './listData.module.css'
 import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
@@ -7,15 +7,24 @@ import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
 function ListData() {
   const { data } = useOutletContext<OutletContextT>()
   const [list, setList] = useState(data)
+  const [searchParams, setSearchParams] = useSearchParams()
 
   function handleSorting(type: SortingTypeT) {
-    const sorted = sort(type, data)
-    setList(sorted as AllPossibleDataArraysT)
+    //@ts-ignore ... Не понимаю как правильно затипизировать
+    setSearchParams(prev => ({ ...prev, sort: type }))
   }
 
   useEffect(() => {
     setList(data)
   }, [data])
+
+  // sorts list if 'sort' query parameter exists
+  useEffect(() => {
+    if (searchParams.get('sort') !== null) {
+      const sorted = sort(searchParams.get('sort') as SortingTypeT, data)
+      setList(sorted as AllPossibleDataArraysT)
+    }
+  }, [searchParams])
 
   return (
     <div>
