@@ -1,12 +1,12 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
-import episodesData from './assets/episode.json'
-import locationsData from './assets/location.json'
-import charactersData from './assets/characters.json'
-import Main from './pages/Main'
-import ListData from './pages/ListData'
-import SelectedDataItem from './pages/SelectedDataItem'
-import { DataPagesURLs } from './types'
-import NotFound from './pages/NotFound'
+import episodesData from '../../assets/episode.json'
+import locationsData from '../../assets/location.json'
+import charactersData from '../../assets/characters.json'
+import Main from '../../pages/Main'
+import ListData from '../../pages/ListData'
+import SelectedDataItem from '../../pages/SelectedDataItem'
+import { DataPagesURLs } from '../../types'
+import NotFound from '../../pages/NotFound'
 
 export default function Routing() {
   const dataPages = [

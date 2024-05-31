@@ -42,7 +42,7 @@ export enum URLs {
   Characters = DataPagesURLs.Characters,
 }
 
-export type RoutesURLsT = 'locations' | 'episodes' | 'characters'
+export type RoutesURLsT = 'locations' | 'episodes' | 'characters' | '/'
 
 export type OutletContextT = {
   url: RoutesURLsT
