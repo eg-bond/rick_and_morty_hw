@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { Navbar } from './Components/Navbar'
+import { Routing } from './Components/Routing'
 
 function App() {
   return (
-    <>
-      <h1>Rick and Morty HW</h1>
-    </>
+    <div>
+      <Navbar />
+      <Routing />
+    </div>
   )
 }
 
