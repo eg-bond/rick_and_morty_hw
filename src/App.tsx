@@ -1,10 +1,10 @@
 import { Link, Outlet, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
-import ListItems from './pages/ListItems'
-import locations from './assets/location.json'
-import episodes from './assets/episode.json'
-import characters from './assets/characters.json'
-import Item from './pages/Item'
+import ListData from './pages/ListData'
+import SelectedDataItem from './pages/SelectedDataItem'
+import episodesData from './assets/episode.json'
+import locationsData from './assets/location.json'
+import charactersData from './assets/characters.json'
 
 function App() {
   return (
@@ -27,25 +27,27 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route
           path='/episodes'
-          element={<Outlet context={{ items: episodes, type: 'episodes' }} />}>
-          <Route index element={<ListItems />} />
-          <Route path=':id' element={<Item />} />
+          element={
+            <Outlet context={{ data: episodesData, url: 'episodes' }} />
+          }>
+          <Route index element={<ListData />} />
+          <Route path=':id' element={<SelectedDataItem />} />
         </Route>
         <Route
           path='/locations'
           element={
-            <Outlet context={{ items: locations, type: 'locations' }} />
+            <Outlet context={{ data: locationsData, url: 'locations' }} />
           }>
-          <Route index element={<ListItems />} />
-          <Route path=':id' element={<Item />} />
+          <Route index element={<ListData />} />
+          <Route path=':id' element={<SelectedDataItem />} />
         </Route>
         <Route
           path='/characters'
           element={
-            <Outlet context={{ items: characters, type: 'characters' }} />
+            <Outlet context={{ data: charactersData, url: 'characters' }} />
           }>
-          <Route index element={<ListItems />} />
-          <Route path=':id' element={<Item />} />
+          <Route index element={<ListData />} />
+          <Route path=':id' element={<SelectedDataItem />} />
         </Route>
       </Routes>
     </div>

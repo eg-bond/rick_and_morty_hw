@@ -29,9 +29,9 @@ export type AllPossibleDataArraysT =
   | EpisodeDataT[]
   | CharactersDataT[]
 
-export type RoutesTypesT = 'locations' | 'episodes' | 'characters'
+export type RoutesURLsT = 'locations' | 'episodes' | 'characters'
 
 export type OutletContextT = {
-  type: RoutesTypesT
-  items: AllPossibleDataArraysT
+  url: RoutesURLsT
+  data: AllPossibleDataArraysT
 }

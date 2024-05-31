@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import type { EpisodeDataT } from '../types'
+import type { EpisodeDataT } from '../../types'
 
-function EpisodeLayout({ item }: { item: EpisodeDataT }) {
+function EpisodeLayout({ item, url }: { item: EpisodeDataT; url: 'episodes' }) {
   return (
     <>
       <div>
@@ -9,7 +9,7 @@ function EpisodeLayout({ item }: { item: EpisodeDataT }) {
         <p>Дата выхода серии: {item.air_date}</p>
         <p>Код эпизода: {item.episode}</p>
       </div>
-      <Link to='/episodes'>Вернуться к выбору эпизода</Link>
+      <Link to={`/${url}`}>Вернуться к выбору эпизода</Link>
     </>
   )
 }

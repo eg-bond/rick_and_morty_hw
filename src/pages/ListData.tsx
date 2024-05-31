@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
-import { AllPossibleDataArraysT, OutletContextT } from './types'
 import { SortingTypeT, sort } from '../helpers'
+import type { AllPossibleDataArraysT, OutletContextT } from '../types'
 
-function ListItems() {
-  const { items } = useOutletContext<OutletContextT>()
-  const [list, setList] = useState(items)
+function ListData() {
+  const { data } = useOutletContext<OutletContextT>()
+  const [list, setList] = useState(data)
 
   function handleSorting(type: SortingTypeT) {
-    const sorted = sort(type, items)
+    const sorted = sort(type, data)
     setList(sorted as AllPossibleDataArraysT)
   }
 
   useEffect(() => {
-    setList(items)
-  }, [items])
+    setList(data)
+  }, [data])
 
   return (
     <div>
@@ -33,4 +33,4 @@ function ListItems() {
   )
 }
 
-export default ListItems
+export default ListData

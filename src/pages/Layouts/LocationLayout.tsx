@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
-import type { LocationDataT } from '../types'
+import type { LocationDataT } from '../../types'
 
-function LocationLayout({ item }: { item: LocationDataT }) {
+function LocationLayout({
+  item,
+  url,
+}: {
+  item: LocationDataT
+  url: 'locations'
+}) {
   return (
     <>
       <div>
@@ -9,7 +15,7 @@ function LocationLayout({ item }: { item: LocationDataT }) {
         <p>Тип: {item.type}</p>
         <p>Измерение: {item.dimension}</p>
       </div>
-      <Link to='/locations'>Вернуться к выбору локации</Link>
+      <Link to={`/${url}`}>Вернуться к выбору локации</Link>
     </>
   )
 }

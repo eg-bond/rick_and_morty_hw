@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
-import type { CharactersDataT } from '../types'
+import type { CharactersDataT } from '../../types'
 
-function CharacterLayout({ item }: { item: CharactersDataT }) {
+function CharacterLayout({
+  item,
+  url,
+}: {
+  item: CharactersDataT
+  url: 'characters'
+}) {
   return (
     <>
       <div>
@@ -11,7 +17,7 @@ function CharacterLayout({ item }: { item: CharactersDataT }) {
         <p>Пол: {item.gender}</p>
         <p>Фото: {item.image}</p>
       </div>
-      <Link to='/characters'>Вернуться к выбору персонажа</Link>
+      <Link to={`/${url}`}>Вернуться к выбору персонажа</Link>
     </>
   )
 }
