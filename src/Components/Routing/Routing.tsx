@@ -9,6 +9,7 @@ import { SelectedDataItem } from '../../pages/SelectedDataItem'
 import { AppRoutes } from '../../types'
 import s from './routing.module.css'
 import { Login } from '../../pages/Login'
+import { PrivateRoute } from '../PrivateRoute'
 
 export default function Routing() {
   const dataPages = [
@@ -29,8 +30,22 @@ export default function Routing() {
             key={route}
             path={route}
             element={<Outlet context={{ data, route }} />}>
-            <Route index element={<ListData />} />
-            <Route path=':id' element={<SelectedDataItem />} />
+            <Route
+              index
+              element={
+                <PrivateRoute>
+                  <ListData />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=':id'
+              element={
+                <PrivateRoute>
+                  <SelectedDataItem />
+                </PrivateRoute>
+              }
+            />
           </Route>
         ))}
       </Routes>
