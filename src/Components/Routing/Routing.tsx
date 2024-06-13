@@ -19,22 +19,20 @@ export default function Routing() {
 
   return (
     <div className={s.content}>
-      <AuthProvider>
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='*' element={<NotFound />} />
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='*' element={<NotFound />} />
 
-          {dataPages.map(({ url, data }) => (
-            <Route
-              key={url}
-              path={url}
-              element={<Outlet context={{ data, url }} />}>
-              <Route index element={<ListData />} />
-              <Route path=':id' element={<SelectedDataItem />} />
-            </Route>
-          ))}
-        </Routes>
-      </AuthProvider>
+        {dataPages.map(({ url, data }) => (
+          <Route
+            key={url}
+            path={url}
+            element={<Outlet context={{ data, url }} />}>
+            <Route index element={<ListData />} />
+            <Route path=':id' element={<SelectedDataItem />} />
+          </Route>
+        ))}
+      </Routes>
     </div>
   )
 }
