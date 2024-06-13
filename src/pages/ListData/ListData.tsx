@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
-import { SortingTypeT, sort } from '../../helpers'
+import { SortingKinds, SortingKindsT, sort } from '../../helpers'
 import s from './listData.module.css'
 import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
 
@@ -9,7 +9,7 @@ function ListData() {
   const [list, setList] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
 
-  function handleSorting(type: SortingTypeT) {
+  function handleSorting(type: SortingKindsT) {
     //@ts-ignore ... Не понимаю как правильно затипизировать
     setSearchParams(prev => ({ ...prev, sort: type }))
   }
@@ -21,7 +21,7 @@ function ListData() {
   // sorts list if 'sort' query parameter exists
   useEffect(() => {
     if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingTypeT, data)
+      const sorted = sort(searchParams.get('sort') as SortingKindsT, data)
       setList(sorted as AllPossibleDataArraysT)
     }
   }, [searchParams])
@@ -29,8 +29,12 @@ function ListData() {
   return (
     <div>
       <div className={s.sort}>
-        <button onClick={() => handleSorting('DESC')}>По убыванию</button>
-        <button onClick={() => handleSorting('ASC')}>По возрастанию</button>
+        <button onClick={() => handleSorting(SortingKinds.DESC)}>
+          По убыванию
+        </button>
+        <button onClick={() => handleSorting(SortingKinds.ASC)}>
+          По возрастанию
+        </button>
       </div>
 
       {list.map(item => (

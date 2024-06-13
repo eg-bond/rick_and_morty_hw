@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+.inputContainer {
+  margin: 1rem 0;
+}
+
+.label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 0 0.4rem;
+  font-size: calc(1rem * var(--input-size));
+}
+
+.asterisk {
+  color: red;
+  font-size: calc(1rem * var(--input-size));
+}
+
+.description {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(111, 111, 111);
+  padding: 0 0.4rem;
+  margin: 0.2rem 0;
+  font-size: calc(0.85rem * var(--input-size));
+}
+
+.input {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  border: solid 1px var(--input-border-color);
+  border-radius: calc(1rem * var(--input-radius));
+  font-size: calc(1rem * var(--input-size));
+  padding: 0.4rem;
+  color: var(--input-value-color);
+  caret-color: var(--input-value-color);
+  background-color: var(--input-background-color);
+}
+.input::placeholder {
+  color: var(--input-placeholder-color);
+}
+.input:focus {
+  outline: none;
+  border: solid 1px var(--input-border-focused-color);
+}
+
+.error {
+  margin: 0.2rem 0;
+  padding: 0 0.4rem;
+  color: var(--input-border-color);
+}
+
+.radios {
+  display: flex;
+}
+.radio {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  padding: 0 0.4rem;
+  font-size: calc(1rem * var(--input-size));
+}

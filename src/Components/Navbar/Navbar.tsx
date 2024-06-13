@@ -1,15 +1,15 @@
 import s from './navbar.module.css'
 import { NavItem } from './NavItem'
-import { URLs } from '../../types'
+import { AppRoutes } from '../../types'
 
 export default function Navbar() {
   return (
     <div className={s.navigationContainer}>
       <ul className={s.navigation}>
-        <NavItem url={URLs.Main} text='Главная' />
-        <NavItem url={URLs.Episodes} text='Эпизоды' />
-        <NavItem url={URLs.Locations} text='Локации' />
-        <NavItem url={URLs.Characters} text='Персонажи' />
+        <NavItem route={AppRoutes.Main} text='Главная' />
+        <NavItem route={AppRoutes.Episodes} text='Эпизоды' />
+        <NavItem route={AppRoutes.Locations} text='Локации' />
+        <NavItem route={AppRoutes.Characters} text='Персонажи' />
       </ul>
     </div>
   )
