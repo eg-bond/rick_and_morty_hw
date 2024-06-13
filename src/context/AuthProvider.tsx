@@ -13,14 +13,18 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<string | null>(null)
+  const [user, setUser] = useState<string | null>(() =>
+    localStorage.getItem('username')
+  )
 
   const signIn = (newUser: string, callback: () => void) => {
+    localStorage.setItem('username', newUser)
     setUser(newUser)
     callback()
   }
 
   const signOut = (callback: () => void) => {
+    localStorage.removeItem('username')
     setUser(null)
     callback()
   }
