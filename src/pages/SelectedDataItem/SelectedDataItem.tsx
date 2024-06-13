@@ -5,14 +5,14 @@ import type { OutletContextT } from '../../types'
 
 function SelectedDataItem() {
   const { id } = useParams<{ id: string }>()
-  const { data, url } = useOutletContext<OutletContextT>()
+  const { data, route } = useOutletContext<OutletContextT>()
   const dataItem = getDataItem(data, id)
 
   if (!dataItem) {
     return null
   }
 
-  return <ItemLayout dataItem={dataItem} url={url} />
+  return <ItemLayout dataItem={dataItem} route={route} />
 }
 
 export default SelectedDataItem

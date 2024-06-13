@@ -1,17 +1,23 @@
 import type { AllPossibleDataArraysT, AllPossibleDataT } from './types'
 
-export type SortingTypeT = 'ASC' | 'DESC' | null
+// function to sort incoming data array
+export enum SortingKinds {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}
+export type SortingKindsT = SortingKinds.ASC | SortingKinds.DESC | null
 
-export function sort(type: SortingTypeT, items: AllPossibleDataArraysT) {
+export function sort(type: SortingKindsT, items: AllPossibleDataArraysT) {
   if (type === null) return items
   if (items.length === 0) return []
   return [...items].sort((a, b) => {
     const dateA = Date.parse(a.created)
     const dateB = Date.parse(b.created)
-    return type === 'ASC' ? dateA - dateB : dateB - dateA
+    return type === SortingKinds.ASC ? dateA - dateB : dateB - dateA
   })
 }
 
+// function to get the particular data item from an array using 'item.id' field
 export function getDataItem(
   items: AllPossibleDataArraysT,
   id: string | undefined

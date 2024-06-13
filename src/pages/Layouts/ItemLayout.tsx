@@ -1,28 +1,36 @@
 import CharacterLayout from './CharacterLayout'
 import EpisodeLayout from './EpisodeLayout'
 import LocationLayout from './LocationLayout'
-import type {
-  AllPossibleDataT,
-  CharactersDataT,
-  EpisodeDataT,
-  LocationDataT,
-  RoutesURLsT,
+import {
+  AppRoutes,
+  OutletContextT,
+  type AllPossibleDataT,
+  type CharactersDataT,
+  type EpisodeDataT,
+  type LocationDataT,
 } from '../../types'
 
 function ItemLayout({
   dataItem,
-  url,
+  route,
 }: {
   dataItem: AllPossibleDataT
-  url: RoutesURLsT
+  route: OutletContextT['route']
 }) {
-  switch (url) {
-    case 'locations':
-      return <LocationLayout item={dataItem as LocationDataT} url={url} />
-    case 'episodes':
-      return <EpisodeLayout item={dataItem as EpisodeDataT} url={url} />
-    case 'characters':
-      return <CharacterLayout item={dataItem as CharactersDataT} url={url} />
+  switch (route) {
+    case AppRoutes.Locations:
+      return (
+        <LocationLayout location={dataItem as LocationDataT} route={route} />
+      )
+    case AppRoutes.Episodes:
+      return <EpisodeLayout episode={dataItem as EpisodeDataT} route={route} />
+    case AppRoutes.Characters:
+      return (
+        <CharacterLayout
+          character={dataItem as CharactersDataT}
+          route={route}
+        />
+      )
     default:
       return null
   }

@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthProvider'
-import { URLs } from '../../types'
+import { AppRoutes } from '../../types'
 
 export const AuthStatus = () => {
   const auth = useAuth()
@@ -14,7 +14,7 @@ export const AuthStatus = () => {
     return (
       <>
         <p>You are not logged in.</p>
-        <NavLink to={URLs.Login}>Войти</NavLink>
+        <NavLink to={AppRoutes.Login}>Войти</NavLink>
       </>
     )
   }

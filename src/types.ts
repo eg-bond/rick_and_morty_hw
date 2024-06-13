@@ -29,28 +29,16 @@ export type AllPossibleDataArraysT =
   | EpisodeDataT[]
   | CharactersDataT[]
 
-export enum DataPagesURLs {
+export enum AppRoutes {
+  Main = '/',
   Locations = 'locations',
   Episodes = 'episodes',
   Characters = 'characters',
-}
-
-export enum URLs {
-  Main = '/',
-  Locations = DataPagesURLs.Locations,
-  Episodes = DataPagesURLs.Episodes,
-  Characters = DataPagesURLs.Characters,
   Login = 'login',
+  NotFound = '*',
 }
-
-export type RoutesURLsT =
-  | 'locations'
-  | 'episodes'
-  | 'characters'
-  | '/'
-  | 'login'
 
 export type OutletContextT = {
-  url: RoutesURLsT
+  route: AppRoutes.Locations | AppRoutes.Episodes | AppRoutes.Characters
   data: AllPossibleDataArraysT
 }

@@ -6,29 +6,29 @@ import NotFound from '../../pages/NotFound/NotFound'
 import { Main } from '../../pages/Main'
 import { ListData } from '../../pages/ListData'
 import { SelectedDataItem } from '../../pages/SelectedDataItem'
-import { DataPagesURLs } from '../../types'
+import { AppRoutes } from '../../types'
 import s from './routing.module.css'
 import { Login } from '../../pages/Login'
 
 export default function Routing() {
   const dataPages = [
-    { url: DataPagesURLs.Episodes, data: episodesData },
-    { url: DataPagesURLs.Locations, data: locationsData },
-    { url: DataPagesURLs.Characters, data: charactersData },
+    { route: AppRoutes.Episodes, data: episodesData },
+    { route: AppRoutes.Locations, data: locationsData },
+    { route: AppRoutes.Characters, data: charactersData },
   ]
 
   return (
     <div className={s.content}>
       <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='login' element={<Login />} />
+        <Route path={AppRoutes.Main} element={<Main />} />
+        <Route path={AppRoutes.NotFound} element={<NotFound />} />
+        <Route path={AppRoutes.Login} element={<Login />} />
 
-        {dataPages.map(({ url, data }) => (
+        {dataPages.map(({ route, data }) => (
           <Route
-            key={url}
-            path={url}
-            element={<Outlet context={{ data, url }} />}>
+            key={route}
+            path={route}
+            element={<Outlet context={{ data, route }} />}>
             <Route index element={<ListData />} />
             <Route path=':id' element={<SelectedDataItem />} />
           </Route>
