@@ -40,9 +40,15 @@ export enum URLs {
   Locations = DataPagesURLs.Locations,
   Episodes = DataPagesURLs.Episodes,
   Characters = DataPagesURLs.Characters,
+  Login = 'login',
 }
 
-export type RoutesURLsT = 'locations' | 'episodes' | 'characters' | '/'
+export type RoutesURLsT =
+  | 'locations'
+  | 'episodes'
+  | 'characters'
+  | '/'
+  | 'login'
 
 export type OutletContextT = {
   url: RoutesURLsT

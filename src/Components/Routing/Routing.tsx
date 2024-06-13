@@ -8,7 +8,7 @@ import { ListData } from '../../pages/ListData'
 import { SelectedDataItem } from '../../pages/SelectedDataItem'
 import { DataPagesURLs } from '../../types'
 import s from './routing.module.css'
-import { AuthProvider } from '../../context/AuthProvider'
+import { Login } from '../../pages/Login'
 
 export default function Routing() {
   const dataPages = [
@@ -22,6 +22,7 @@ export default function Routing() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='login' element={<Login />} />
 
         {dataPages.map(({ url, data }) => (
           <Route

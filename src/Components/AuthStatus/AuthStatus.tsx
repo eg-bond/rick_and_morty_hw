@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthProvider'
+import { URLs } from '../../types'
 
 export const AuthStatus = () => {
   const auth = useAuth()
@@ -10,13 +11,18 @@ export const AuthStatus = () => {
   }
 
   if (auth?.user === null) {
-    return <p>You are not logged in.</p>
+    return (
+      <>
+        <p>You are not logged in.</p>
+        <NavLink to={URLs.Login}>Войти</NavLink>
+      </>
+    )
   }
 
   return (
     <p>
       Welcome user {auth?.user}
-      <button onClick={handleSignOut}></button>
+      <button onClick={handleSignOut}>Выйти</button>
     </p>
   )
 }
