@@ -4,7 +4,7 @@ import { SortingKinds, SortingKindsT, sort } from '../../helpers'
 import s from './listData.module.css'
 import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
 
-function ListData() {
+export function ListData() {
   const { data } = useOutletContext<OutletContextT>()
   const [list, setList] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -45,5 +45,3 @@ function ListData() {
     </div>
   )
 }
-
-export default ListData

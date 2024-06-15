@@ -3,7 +3,7 @@ import { getDataItem } from '../../helpers'
 import ItemLayout from '../Layouts/ItemLayout'
 import type { OutletContextT } from '../../types'
 
-function SelectedDataItem() {
+export function SelectedDataItem() {
   const { id } = useParams<{ id: string }>()
   const { data, route } = useOutletContext<OutletContextT>()
   const dataItem = getDataItem(data, id)
@@ -14,5 +14,3 @@ function SelectedDataItem() {
 
   return <ItemLayout dataItem={dataItem} route={route} />
 }
-
-export default SelectedDataItem

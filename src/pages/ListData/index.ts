@@ -1,1 +1,2 @@
-export { default as ListData } from './ListData'
+import { ListData } from './ListData'
+export { ListData }

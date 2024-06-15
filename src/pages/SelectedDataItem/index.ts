@@ -1,1 +1,2 @@
-export { default as SelectedDataItem } from './SelectedDataItem'
+import { SelectedDataItem } from './SelectedDataItem'
+export { SelectedDataItem }
