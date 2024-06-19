@@ -6,6 +6,7 @@ import { AppRoutes } from '../../types'
 import s from './routing.module.css'
 import { PrivateRoute } from '../PrivateRoute'
 import { Suspense, lazy } from 'react'
+import { ErrorBoundary } from '../ErrorBoundary'
 
 const Main = lazy(() =>
   import('../../pages/Main').then(module => ({ default: module.Main }))
@@ -38,7 +39,14 @@ export default function Routing() {
         <Routes>
           <Route path={AppRoutes.Main} element={<Main />} />
           <Route path={AppRoutes.NotFound} element={<NotFound />} />
-          <Route path={AppRoutes.Login} element={<Login />} />
+          <Route
+            path={AppRoutes.Login}
+            element={
+              <ErrorBoundary>
+                <Login />
+              </ErrorBoundary>
+            }
+          />
 
           {dataPages.map(({ route, data }) => (
             <Route
@@ -49,7 +57,9 @@ export default function Routing() {
                 index
                 element={
                   <PrivateRoute>
-                    <ListData />
+                    <ErrorBoundary>
+                      <ListData />
+                    </ErrorBoundary>
                   </PrivateRoute>
                 }
               />
@@ -57,7 +67,9 @@ export default function Routing() {
                 path=':id'
                 element={
                   <PrivateRoute>
-                    <SelectedDataItem />
+                    <ErrorBoundary>
+                      <SelectedDataItem />
+                    </ErrorBoundary>
                   </PrivateRoute>
                 }
               />
