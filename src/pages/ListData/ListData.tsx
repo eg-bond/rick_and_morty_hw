@@ -3,9 +3,11 @@ import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
 import { SortingKinds, SortingKindsT, sort } from '../../helpers'
 import s from './listData.module.css'
 import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
+import { useDataFromApi } from '../../hooks/useDataFromApi'
 
 export function ListData() {
-  const { data } = useOutletContext<OutletContextT>()
+  const { apiURL } = useOutletContext<OutletContextT>()
+  const { data, loading } = useDataFromApi(apiURL, 1)
   const [list, setList] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -36,7 +38,7 @@ export function ListData() {
           По возрастанию
         </button>
       </div>
-
+      {loading && <div>...Loading data</div>}
       {list.map(item => (
         <div className={s.item} key={item.id}>
           <Link to={`${item.id}`}>{item.name.toString()}</Link>

@@ -1,7 +1,4 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
-import episodesData from '../../assets/episode.json'
-import locationsData from '../../assets/location.json'
-import charactersData from '../../assets/characters.json'
 import { AppRoutes } from '../../types'
 import s from './routing.module.css'
 import { PrivateRoute } from '../PrivateRoute'
@@ -28,9 +25,18 @@ const SelectedDataItem = lazy(() =>
 
 export default function Routing() {
   const dataPages = [
-    { route: AppRoutes.Episodes, data: episodesData },
-    { route: AppRoutes.Locations, data: locationsData },
-    { route: AppRoutes.Characters, data: charactersData },
+    {
+      route: AppRoutes.Episodes,
+      apiURL: 'https://rickandmortyapi.com/api/episode',
+    },
+    {
+      route: AppRoutes.Locations,
+      apiURL: 'https://rickandmortyapi.com/api/location',
+    },
+    {
+      route: AppRoutes.Characters,
+      apiURL: 'https://rickandmortyapi.com/api/character',
+    },
   ]
 
   return (
@@ -48,11 +54,11 @@ export default function Routing() {
             }
           />
 
-          {dataPages.map(({ route, data }) => (
+          {dataPages.map(({ route, apiURL }) => (
             <Route
               key={route}
               path={route}
-              element={<Outlet context={{ data, route }} />}>
+              element={<Outlet context={{ apiURL, route }} />}>
               <Route
                 index
                 element={

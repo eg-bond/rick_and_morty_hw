@@ -8,9 +8,9 @@ export function useDataFromApi(url: string, pageNumber: number) {
   const [data, setData] = useState<AllPossibleDataArraysT>([])
   const [hasMore, setHasMore] = useState(false)
 
-  // useEffect(() => {
-  //   setData([])
-  // }, [url])
+  useEffect(() => {
+    setData([])
+  }, [url])
 
   useEffect(() => {
     setLoading(true)

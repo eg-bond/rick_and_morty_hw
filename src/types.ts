@@ -40,5 +40,5 @@ export enum AppRoutes {
 
 export type OutletContextT = {
   route: AppRoutes.Locations | AppRoutes.Episodes | AppRoutes.Characters
-  data: AllPossibleDataArraysT
+  apiURL: string
 }
