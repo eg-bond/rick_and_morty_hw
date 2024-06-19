@@ -10,7 +10,7 @@ export function ListData() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   function handleSorting(type: SortingKindsT) {
-    //@ts-ignore ... Не понимаю как правильно затипизировать
+    //@ts-ignore
     setSearchParams(prev => ({ ...prev, sort: type }))
   }
 
