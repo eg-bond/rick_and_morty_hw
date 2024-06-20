@@ -42,4 +42,6 @@ export type DataPagesOutletContextT = {
   route: AppRoutes.Locations | AppRoutes.Episodes | AppRoutes.Characters
   data: AllPossibleDataArraysT
   loading: boolean
+  hasMore: boolean
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>
 }

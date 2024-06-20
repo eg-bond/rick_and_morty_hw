@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { AppRoutes } from '../../types'
 import { useDataFromApi } from '../../hooks/useDataFromApi'
+import { useEffect, useState } from 'react'
 
 export function DataPagesOutlet({
   apiURL,
@@ -9,6 +10,13 @@ export function DataPagesOutlet({
   apiURL: string
   route: AppRoutes
 }) {
-  const { data, loading } = useDataFromApi(apiURL, 1)
-  return <Outlet context={{ data, loading, route }} />
+  const [pageNumber, setPageNumber] = useState(1)
+
+  useEffect(() => {
+    setPageNumber(1)
+  }, [apiURL])
+
+  const { data, loading, hasMore } = useDataFromApi(apiURL, pageNumber)
+
+  return <Outlet context={{ data, loading, route, hasMore, setPageNumber }} />
 }

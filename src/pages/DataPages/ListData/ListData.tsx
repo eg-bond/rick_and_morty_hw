@@ -1,22 +1,47 @@
-import { useEffect, useState } from 'react'
-import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useOutletContext, useSearchParams } from 'react-router-dom'
 import { SortingKinds, SortingKindsT, sort } from '../../../helpers'
 import s from './listData.module.css'
 import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
 } from '../../../types'
+import { DataItem } from './DataItem'
 
 export function ListData() {
-  const { data, loading } = useOutletContext<DataPagesOutletContextT>()
-  const [list, setList] = useState(data)
+  const { data, loading, hasMore, setPageNumber } =
+    useOutletContext<DataPagesOutletContextT>()
   const [searchParams, setSearchParams] = useSearchParams()
+  const [list, setList] = useState(data)
+
+  // infinity scroll
+  const LAST_NODE_INDEX = 10
+  const observer = useRef<IntersectionObserver>()
+  const lastNodeRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (loading) return
+      if (observer.current) {
+        observer.current.disconnect()
+      }
+
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber(prev => prev + 1)
+        }
+      })
+      if (node) {
+        observer.current.observe(node)
+      }
+    },
+    [loading, hasMore]
+  )
 
   function handleSorting(type: SortingKindsT) {
     //@ts-ignore
     setSearchParams(prev => ({ ...prev, sort: type }))
   }
 
+  // updates list than new data comes
   useEffect(() => {
     setList(data)
   }, [data])
@@ -39,11 +64,16 @@ export function ListData() {
           По возрастанию
         </button>
       </div>
+
       {loading && <div>...Loading data</div>}
-      {list.map(item => (
-        <div className={s.item} key={item.id}>
-          <Link to={`${item.id}`}>{item.name.toString()}</Link>
-        </div>
+
+      {list.map((item, i) => (
+        <DataItem
+          item={item}
+          isLastNode={i > list.length - LAST_NODE_INDEX}
+          lastNodeRef={lastNodeRef}
+          key={item.id}
+        />
       ))}
     </div>
   )

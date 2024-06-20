@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { Canceler } from 'axios'
 import { useEffect, useState } from 'react'
 import { AllPossibleDataArraysT } from '../types'
 
@@ -15,10 +15,12 @@ export function useDataFromApi(url: string, pageNumber: number) {
   useEffect(() => {
     setLoading(true)
     setError(false)
+    let cancel: Canceler
     axios({
       method: 'GET',
       url,
       params: { page: pageNumber },
+      cancelToken: new axios.CancelToken(c => (cancel = c)),
     })
       .then(res => {
         setLoading(false)
@@ -26,9 +28,12 @@ export function useDataFromApi(url: string, pageNumber: number) {
         setHasMore(res.data.info.next !== null)
       })
       .catch(e => {
+        if (axios.isCancel(e)) return
         setError(true)
         console.error(e)
       })
+
+    return () => cancel()
   }, [url, pageNumber])
 
   return {
