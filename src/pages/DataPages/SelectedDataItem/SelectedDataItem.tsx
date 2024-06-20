@@ -1,11 +1,11 @@
 import { useOutletContext, useParams } from 'react-router-dom'
-import { getDataItem } from '../../helpers'
-import ItemLayout from '../Layouts/ItemLayout'
-import type { OutletContextT } from '../../types'
+import { getDataItem } from '../../../helpers'
+import type { DataPagesOutletContextT } from '../../../types'
+import ItemLayout from './Layouts/ItemLayout'
 
 export function SelectedDataItem() {
   const { id } = useParams<{ id: string }>()
-  const { data, route } = useOutletContext<OutletContextT>()
+  const { data, route } = useOutletContext<DataPagesOutletContextT>()
   const dataItem = getDataItem(data, id)
 
   if (!dataItem) {

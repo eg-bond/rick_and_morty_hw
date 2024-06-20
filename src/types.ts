@@ -38,7 +38,8 @@ export enum AppRoutes {
   NotFound = '*',
 }
 
-export type OutletContextT = {
+export type DataPagesOutletContextT = {
   route: AppRoutes.Locations | AppRoutes.Episodes | AppRoutes.Characters
-  apiURL: string
+  data: AllPossibleDataArraysT
+  loading: boolean
 }

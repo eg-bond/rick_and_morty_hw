@@ -3,19 +3,19 @@ import EpisodeLayout from './EpisodeLayout'
 import LocationLayout from './LocationLayout'
 import {
   AppRoutes,
-  OutletContextT,
+  DataPagesOutletContextT,
   type AllPossibleDataT,
   type CharactersDataT,
   type EpisodeDataT,
   type LocationDataT,
-} from '../../types'
+} from '../../../../types'
 
 function ItemLayout({
   dataItem,
   route,
 }: {
   dataItem: AllPossibleDataT
-  route: OutletContextT['route']
+  route: DataPagesOutletContextT['route']
 }) {
   switch (route) {
     case AppRoutes.Locations:

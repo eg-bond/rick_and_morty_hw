@@ -1,9 +1,10 @@
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { AppRoutes } from '../../types'
 import s from './routing.module.css'
 import { PrivateRoute } from '../PrivateRoute'
 import { Suspense, lazy } from 'react'
 import { ErrorBoundary } from '../ErrorBoundary'
+import { DataPagesOutlet } from '../../pages/DataPages/DataPagesOutlet'
 
 const Main = lazy(() =>
   import('../../pages/Main').then(module => ({ default: module.Main }))
@@ -15,30 +16,32 @@ const Login = lazy(() =>
   import('../../pages/Login').then(module => ({ default: module.Login }))
 )
 const ListData = lazy(() =>
-  import('../../pages/ListData').then(module => ({ default: module.ListData }))
+  import('../../pages/DataPages/ListData').then(module => ({
+    default: module.ListData,
+  }))
 )
 const SelectedDataItem = lazy(() =>
-  import('../../pages/SelectedDataItem').then(module => ({
+  import('../../pages/DataPages/SelectedDataItem').then(module => ({
     default: module.SelectedDataItem,
   }))
 )
 
-export default function Routing() {
-  const dataPages = [
-    {
-      route: AppRoutes.Episodes,
-      apiURL: 'https://rickandmortyapi.com/api/episode',
-    },
-    {
-      route: AppRoutes.Locations,
-      apiURL: 'https://rickandmortyapi.com/api/location',
-    },
-    {
-      route: AppRoutes.Characters,
-      apiURL: 'https://rickandmortyapi.com/api/character',
-    },
-  ]
+const dataPages = [
+  {
+    route: AppRoutes.Episodes,
+    apiURL: 'https://rickandmortyapi.com/api/episode',
+  },
+  {
+    route: AppRoutes.Locations,
+    apiURL: 'https://rickandmortyapi.com/api/location',
+  },
+  {
+    route: AppRoutes.Characters,
+    apiURL: 'https://rickandmortyapi.com/api/character',
+  },
+]
 
+export default function Routing() {
   return (
     <div className={s.content}>
       <Suspense fallback={<h1>Loading...</h1>}>
@@ -58,7 +61,7 @@ export default function Routing() {
             <Route
               key={route}
               path={route}
-              element={<Outlet context={{ apiURL, route }} />}>
+              element={<DataPagesOutlet apiURL={apiURL} route={route} />}>
               <Route
                 index
                 element={

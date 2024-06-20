@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
-import { SortingKinds, SortingKindsT, sort } from '../../helpers'
+import { SortingKinds, SortingKindsT, sort } from '../../../helpers'
 import s from './listData.module.css'
-import type { AllPossibleDataArraysT, OutletContextT } from '../../types'
-import { useDataFromApi } from '../../hooks/useDataFromApi'
+import type {
+  AllPossibleDataArraysT,
+  DataPagesOutletContextT,
+} from '../../../types'
 
 export function ListData() {
-  const { apiURL } = useOutletContext<OutletContextT>()
-  const { data, loading } = useDataFromApi(apiURL, 1)
+  const { data, loading } = useOutletContext<DataPagesOutletContextT>()
   const [list, setList] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
 
