@@ -1,54 +1,76 @@
-import { Outlet, Route, Routes } from 'react-router-dom'
-import episodesData from '../../assets/episode.json'
-import locationsData from '../../assets/location.json'
-import charactersData from '../../assets/characters.json'
-import NotFound from '../../pages/NotFound/NotFound'
-import { Main } from '../../pages/Main'
-import { ListData } from '../../pages/ListData'
-import { SelectedDataItem } from '../../pages/SelectedDataItem'
+import { Route, Routes } from 'react-router-dom'
 import { AppRoutes } from '../../types'
 import s from './routing.module.css'
-import { Login } from '../../pages/Login'
 import { PrivateRoute } from '../PrivateRoute'
+import { Suspense } from 'react'
+import { ErrorBoundary } from '../ErrorBoundary'
+import { DataPagesOutlet } from '../../pages/DataPages/DataPagesOutlet'
+import { LazyMain } from '../../pages/Main'
+import { LazyNotFound } from '../../pages/NotFound'
+import { LazyListData } from '../../pages/DataPages/ListData'
+import { LazySelectedDataItem } from '../../pages/DataPages/SelectedDataItem'
+import { LazyLogin } from '../../pages/Login'
+
+const dataPages = [
+  {
+    route: AppRoutes.Episodes,
+    apiURL: 'https://rickandmortyapi.com/api/episode',
+  },
+  {
+    route: AppRoutes.Locations,
+    apiURL: 'https://rickandmortyapi.com/api/location',
+  },
+  {
+    route: AppRoutes.Characters,
+    apiURL: 'https://rickandmortyapi.com/api/character',
+  },
+]
 
 export default function Routing() {
-  const dataPages = [
-    { route: AppRoutes.Episodes, data: episodesData },
-    { route: AppRoutes.Locations, data: locationsData },
-    { route: AppRoutes.Characters, data: charactersData },
-  ]
-
   return (
     <div className={s.content}>
-      <Routes>
-        <Route path={AppRoutes.Main} element={<Main />} />
-        <Route path={AppRoutes.NotFound} element={<NotFound />} />
-        <Route path={AppRoutes.Login} element={<Login />} />
-
-        {dataPages.map(({ route, data }) => (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Routes>
+          <Route path={AppRoutes.Main} element={<LazyMain />} />
+          <Route path={AppRoutes.NotFound} element={<LazyNotFound />} />
           <Route
-            key={route}
-            path={route}
-            element={<Outlet context={{ data, route }} />}>
+            path={AppRoutes.Login}
+            element={
+              <ErrorBoundary>
+                <LazyLogin />
+              </ErrorBoundary>
+            }
+          />
+
+          {dataPages.map(({ route, apiURL }) => (
             <Route
-              index
-              element={
-                <PrivateRoute>
-                  <ListData />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path=':id'
-              element={
-                <PrivateRoute>
-                  <SelectedDataItem />
-                </PrivateRoute>
-              }
-            />
-          </Route>
-        ))}
-      </Routes>
+              key={route}
+              path={route}
+              element={<DataPagesOutlet apiURL={apiURL} route={route} />}>
+              <Route
+                index
+                element={
+                  <PrivateRoute>
+                    <ErrorBoundary>
+                      <LazyListData />
+                    </ErrorBoundary>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path=':id'
+                element={
+                  <PrivateRoute>
+                    <ErrorBoundary>
+                      <LazySelectedDataItem />
+                    </ErrorBoundary>
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+          ))}
+        </Routes>
+      </Suspense>
     </div>
   )
 }
