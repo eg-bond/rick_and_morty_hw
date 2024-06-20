@@ -1,2 +1,8 @@
+import { lazy } from 'react'
 import { Main } from './Main'
-export { Main }
+
+const LazyMain = lazy(() =>
+  import('./Main').then(module => ({ default: module.Main }))
+)
+
+export { Main, LazyMain }

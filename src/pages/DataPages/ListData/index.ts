@@ -1,2 +1,10 @@
+import { lazy } from 'react'
 import { ListData } from './ListData'
-export { ListData }
+
+const LazyListData = lazy(() =>
+  import('../ListData').then(module => ({
+    default: module.ListData,
+  }))
+)
+
+export { ListData, LazyListData }
