@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { API, AppRoutes } from '@/types';
 import { PrivateRoute } from '@/components/PrivateRoute';
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -9,6 +8,8 @@ import { LazyNotFound } from '@/pages/NotFound';
 import { LazyListData } from '@/pages/DataPages/ListData';
 import { LazySelectedDataItem } from '@/pages/DataPages/SelectedDataItem';
 import { LazyLogin } from '@/pages/Login';
+import { API } from '@/types/apiTypes';
+import { AppRoutes } from '@/types/routesTypes';
 import s from './routing.module.css';
 
 const dataPages = [

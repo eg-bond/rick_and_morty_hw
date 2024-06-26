@@ -1,14 +1,14 @@
 import CharacterLayout from './CharacterLayout';
 import EpisodeLayout from './EpisodeLayout';
 import LocationLayout from './LocationLayout';
+import { AppRoutes } from '@/types/routesTypes';
 import {
-  AppRoutes,
-  DataPagesOutletContextT,
+  type DataPagesOutletContextT,
   type AllPossibleDataT,
   type CharactersDataT,
   type EpisodeDataT,
   type LocationDataT,
-} from '@/types';
+} from '@/types/dataPagesTypes';
 
 interface ItemLayoutProps {
   dataItem: AllPossibleDataT;

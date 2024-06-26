@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import { AppRoutes } from '@/types/routesTypes';
 import s from './navbar.module.css';
-import type { AppRoutes } from '@/types';
+
 interface NavItemProps {
   route: AppRoutes;
   text: string;

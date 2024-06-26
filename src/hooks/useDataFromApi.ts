@@ -1,6 +1,6 @@
 import axios, { Canceler } from 'axios';
 import { useEffect, useState } from 'react';
-import { AllPossibleDataArraysT } from '@/types';
+import type { AllPossibleDataArraysT } from '@/types/dataPagesTypes';
 
 /**
  * Hook that gets data from API

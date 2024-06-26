@@ -1,6 +1,6 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import { getDataItem } from '@/utils/helpers';
-import type { DataPagesOutletContextT } from '@/types';
+import { getDataItem } from '@/utils/getDataItem';
+import type { DataPagesOutletContextT } from '@/types/dataPagesTypes';
 import ItemLayout from './Layouts/ItemLayout';
 
 export function SelectedDataItem() {

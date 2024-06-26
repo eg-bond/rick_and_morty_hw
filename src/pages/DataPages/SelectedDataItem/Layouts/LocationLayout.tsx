@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, LocationDataT } from '@/types';
+import { AppRoutes } from '@/types/routesTypes';
+import type { LocationDataT } from '@/types/dataPagesTypes';
 
 interface LocationLayoutProps {
   location: LocationDataT;

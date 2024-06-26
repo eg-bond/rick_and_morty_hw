@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { AppRoutes } from '@/types';
 import { useDataFromApi } from '@/hooks/useDataFromApi';
 import { useEffect, useState } from 'react';
+import { AppRoutes } from '@/types/routesTypes';
 
 interface DataPagesOutletProps {
   apiURL: string;

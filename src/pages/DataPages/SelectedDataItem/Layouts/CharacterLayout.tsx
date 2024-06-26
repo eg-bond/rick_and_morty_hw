@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, CharactersDataT } from '@/types';
+import { AppRoutes } from '@/types/routesTypes';
+import type { CharactersDataT } from '@/types/dataPagesTypes';
 
 interface CharacterLayoutProps {
   character: CharactersDataT;

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, EpisodeDataT } from '@/types';
+import { AppRoutes } from '@/types/routesTypes';
+import type { EpisodeDataT } from '@/types/dataPagesTypes';
 
 interface EpisodeLayoutProps {
   episode: EpisodeDataT;

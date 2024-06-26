@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
-import { AppRoutes } from '@/types';
+import { AppRoutes } from '@/types/routesTypes';
 
 export const AuthStatus = () => {
   const auth = useAuth();

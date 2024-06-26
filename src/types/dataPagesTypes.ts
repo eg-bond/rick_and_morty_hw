@@ -1,3 +1,5 @@
+import { AppRoutes } from './routesTypes';
+
 export interface SharedDataT {
   id: number;
   name: string;
@@ -28,25 +30,6 @@ export type AllPossibleDataArraysT =
   | LocationDataT[]
   | EpisodeDataT[]
   | CharactersDataT[];
-
-export enum AppRoutes {
-  Main = '/',
-  Locations = 'locations',
-  Episodes = 'episodes',
-  Characters = 'characters',
-  Login = 'login',
-  NotFound = '*',
-}
-
-export namespace API {
-  export const Url = 'https://rickandmortyapi.com/api/';
-
-  export enum Endpoints {
-    Location = 'location',
-    Episode = 'episode',
-    Character = 'character',
-  }
-}
 
 export type DataPagesOutletContextT = {
   route: AppRoutes.Locations | AppRoutes.Episodes | AppRoutes.Characters;

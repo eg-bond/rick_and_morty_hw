@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
-import { SortingTypes, SortingTypesT, sort } from '@/utils/helpers';
+import { SortingTypes, sort } from '@/utils/sort';
 import s from './listData.module.css';
-import type { AllPossibleDataArraysT, DataPagesOutletContextT } from '@/types';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
+import type {
+  AllPossibleDataArraysT,
+  DataPagesOutletContextT,
+} from '@/types/dataPagesTypes';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
@@ -16,7 +19,7 @@ export function ListData() {
   const LAST_NODE_INDEX = 10;
   const lastNodeRef = useLastNodeRef({ loading, hasMore, setPageNumber });
 
-  function handleSorting(type: SortingTypesT) {
+  function handleSorting(type: SortingTypes | null) {
     //@ts-ignore
     setSearchParams(prev => ({ ...prev, sort: type }));
   }
@@ -29,7 +32,7 @@ export function ListData() {
   // sorts list if 'sort' query parameter exists
   useEffect(() => {
     if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingTypesT, data);
+      const sorted = sort(searchParams.get('sort') as SortingTypes, data);
       setList(sorted as AllPossibleDataArraysT);
     }
   }, [searchParams]);

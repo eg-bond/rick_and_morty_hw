@@ -1,6 +1,6 @@
-import s from './navbar.module.css';
 import { NavItem } from './NavItem';
-import { AppRoutes } from '@/types';
+import { AppRoutes } from '@/types/routesTypes';
+import s from './navbar.module.css';
 
 export default function Navbar() {
   return (
