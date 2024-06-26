@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { AppRoutes } from '../../types';
-import { useDataFromApi } from '../../hooks/useDataFromApi';
+import { AppRoutes } from '@/types';
+import { useDataFromApi } from '@/hooks/useDataFromApi';
 import { useEffect, useState } from 'react';
 
 interface DataPagesOutletProps {

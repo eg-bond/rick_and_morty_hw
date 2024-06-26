@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, EpisodeDataT } from '../../../../types';
+import type { AppRoutes, EpisodeDataT } from '@/types';
 
-function EpisodeLayout({
-  episode,
-  route,
-}: {
+interface EpisodeLayoutProps {
   episode: EpisodeDataT;
   route: AppRoutes.Episodes;
-}) {
+}
+
+function EpisodeLayout({ episode, route }: EpisodeLayoutProps) {
   return (
     <>
       <div>

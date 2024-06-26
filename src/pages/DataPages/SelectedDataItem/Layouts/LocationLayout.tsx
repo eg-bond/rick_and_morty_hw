@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, LocationDataT } from '../../../../types';
+import type { AppRoutes, LocationDataT } from '@/types';
 
-function LocationLayout({
-  location,
-  route,
-}: {
+interface LocationLayoutProps {
   location: LocationDataT;
   route: AppRoutes.Locations;
-}) {
+}
+
+function LocationLayout({ location, route }: LocationLayoutProps) {
   return (
     <>
       <div>

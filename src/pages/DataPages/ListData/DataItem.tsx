@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AllPossibleDataT } from '../../../types';
+import { AllPossibleDataT } from '@/types';
 import s from './listData.module.css';
 
 interface DataItemProps {

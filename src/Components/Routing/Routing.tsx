@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import { API, AppRoutes } from '../../types';
+import { API, AppRoutes } from '@/types';
 import s from './routing.module.css';
-import { PrivateRoute } from '../PrivateRoute';
+import { PrivateRoute } from '@/Components/PrivateRoute';
 import { Suspense } from 'react';
-import { ErrorBoundary } from '../ErrorBoundary';
-import { DataPagesOutlet } from '../../pages/DataPages/DataPagesOutlet';
-import { LazyMain } from '../../pages/Main';
-import { LazyNotFound } from '../../pages/NotFound';
-import { LazyListData } from '../../pages/DataPages/ListData';
-import { LazySelectedDataItem } from '../../pages/DataPages/SelectedDataItem';
-import { LazyLogin } from '../../pages/Login';
+import { ErrorBoundary } from '@/Components/ErrorBoundary';
+import { DataPagesOutlet } from '@/pages/DataPages/DataPagesOutlet';
+import { LazyMain } from '@/pages/Main';
+import { LazyNotFound } from '@/pages/NotFound';
+import { LazyListData } from '@/pages/DataPages/ListData';
+import { LazySelectedDataItem } from '@/pages/DataPages/SelectedDataItem';
+import { LazyLogin } from '@/pages/Login';
 
 const dataPages = [
   {

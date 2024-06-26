@@ -1,6 +1,6 @@
 import axios, { Canceler } from 'axios';
 import { useEffect, useState } from 'react';
-import { AllPossibleDataArraysT } from '../types';
+import { AllPossibleDataArraysT } from '@/types';
 
 export function useDataFromApi(url: string, pageNumber: number) {
   const [loading, setLoading] = useState(false);

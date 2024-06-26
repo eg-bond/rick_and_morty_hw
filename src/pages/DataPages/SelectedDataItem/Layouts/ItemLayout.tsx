@@ -8,15 +8,14 @@ import {
   type CharactersDataT,
   type EpisodeDataT,
   type LocationDataT,
-} from '../../../../types';
+} from '@/types';
 
-function ItemLayout({
-  dataItem,
-  route,
-}: {
+interface ItemLayoutProps {
   dataItem: AllPossibleDataT;
   route: DataPagesOutletContextT['route'];
-}) {
+}
+
+function ItemLayout({ dataItem, route }: ItemLayoutProps) {
   switch (route) {
     case AppRoutes.Locations:
       return (

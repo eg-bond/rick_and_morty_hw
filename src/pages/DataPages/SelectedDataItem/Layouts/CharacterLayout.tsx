@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import type { AppRoutes, CharactersDataT } from '../../../../types';
+import type { AppRoutes, CharactersDataT } from '@/types';
 
-function CharacterLayout({
-  character,
-  route,
-}: {
+interface CharacterLayoutProps {
   character: CharactersDataT;
   route: AppRoutes.Characters;
-}) {
+}
+
+function CharacterLayout({ character, route }: CharacterLayoutProps) {
   return (
     <>
       <div>

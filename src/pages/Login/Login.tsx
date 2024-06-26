@@ -1,7 +1,7 @@
 import { Location, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthProvider';
+import { useAuth } from '@/context/AuthProvider';
 import { FormEvent } from 'react';
-import { TextInput } from '../../Components/CustomInputs/TextInput';
+import { TextInput } from '@/Components/CustomInputs/TextInput';
 
 export function Login() {
   const auth = useAuth();
