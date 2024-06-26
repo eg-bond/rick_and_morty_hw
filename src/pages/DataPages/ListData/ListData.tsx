@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext, useSearchParams } from 'react-router-dom';
-import { SortingTypes, SortingTypesT, sort } from '@/helpers';
+import { SortingTypes, SortingTypesT, sort } from '@/utils/helpers';
 import s from './listData.module.css';
 import type { AllPossibleDataArraysT, DataPagesOutletContextT } from '@/types';
 import { DataItem } from './DataItem';

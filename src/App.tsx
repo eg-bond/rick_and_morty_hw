@@ -1,6 +1,6 @@
-import { AuthStatus } from '@/Components/AuthStatus';
-import { Navbar } from '@/Components/Navbar';
-import { Routing } from '@/Components/Routing';
+import { AuthStatus } from '@/components/AuthStatus';
+import { Navbar } from '@/components/Navbar';
+import { Routing } from '@/components/Routing';
 import { AuthProvider } from '@/context/AuthProvider';
 
 function App() {

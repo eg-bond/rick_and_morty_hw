@@ -1,4 +1,4 @@
-import type { AllPossibleDataArraysT, AllPossibleDataT } from './types';
+import type { AllPossibleDataArraysT, AllPossibleDataT } from '../types';
 
 // function to sort incoming data array
 export enum SortingTypes {

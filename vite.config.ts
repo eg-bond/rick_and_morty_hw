@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react';
@@ -8,6 +10,7 @@ import { qrcode } from 'vite-plugin-qrcode';
 export default defineConfig({
   plugins: [react(), typedCssModulesPlugin(), qrcode()],
   resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },

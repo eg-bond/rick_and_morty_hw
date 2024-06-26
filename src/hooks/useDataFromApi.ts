@@ -2,6 +2,15 @@ import axios, { Canceler } from 'axios';
 import { useEffect, useState } from 'react';
 import { AllPossibleDataArraysT } from '@/types';
 
+/**
+ * Hook that gets data from API
+ * @param {string} url - API url to get data from
+ * @param {number} pageNumber - page number to get data from
+ * @returns data - the received data
+ * @returns loading - indicates if data is loading
+ * @returns error - indicates if error is occurred
+ * @returns hasMore - indicates if API has more data to load
+ */
 export function useDataFromApi(url: string, pageNumber: number) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

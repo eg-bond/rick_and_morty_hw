@@ -1,5 +1,5 @@
 import { useOutletContext, useParams } from 'react-router-dom';
-import { getDataItem } from '@/helpers';
+import { getDataItem } from '@/utils/helpers';
 import type { DataPagesOutletContextT } from '@/types';
 import ItemLayout from './Layouts/ItemLayout';
 
