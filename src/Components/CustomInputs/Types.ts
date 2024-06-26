@@ -1,30 +1,30 @@
 export type TextInputOptionsT = {
-  type: string
-  name: string
-  label: string
-  asterisk: boolean
-  description: string
-  placeholder: string
-  error: string
-  disabled: boolean
-  variant: 'default' | 'filled' | 'unstyled'
-  radius: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-}
+  type: string;
+  name: string;
+  label: string;
+  asterisk: boolean;
+  description: string;
+  placeholder: string;
+  error: string;
+  disabled: boolean;
+  variant: 'default' | 'filled' | 'unstyled';
+  radius: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+};
 
 export type RadioInputOptionsT = TextInputOptionsT & {
-  valuesArray: Array<string>
-}
+  valuesArray: Array<string>;
+};
 
 export type DynamicStyleT = {
-  '--input-size': string
-  '--input-radius': string
-  '--input-value-color': string
-  '--input-placeholder-color': string
-  '--input-border-color': string
-  '--input-border-focused-color': string
-  '--input-background-color': string
-}
+  '--input-size': string;
+  '--input-radius': string;
+  '--input-value-color': string;
+  '--input-placeholder-color': string;
+  '--input-border-color': string;
+  '--input-border-focused-color': string;
+  '--input-background-color': string;
+};
 
 export enum Sizes {
   xs = '0.75',

@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import type { CharactersDataT, AppRoutes } from '../../types'
+import { Link } from 'react-router-dom';
+import type { AppRoutes, CharactersDataT } from '../../../../types';
 
 function CharacterLayout({
   character,
   route,
 }: {
-  character: CharactersDataT
-  route: AppRoutes.Characters
+  character: CharactersDataT;
+  route: AppRoutes.Characters;
 }) {
   return (
     <>
@@ -19,7 +19,7 @@ function CharacterLayout({
       </div>
       <Link to={`/${route}`}>Вернуться к выбору персонажа</Link>
     </>
-  )
+  );
 }
 
-export default CharacterLayout
+export default CharacterLayout;

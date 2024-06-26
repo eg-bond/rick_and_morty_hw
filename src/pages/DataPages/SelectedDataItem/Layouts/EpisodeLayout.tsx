@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import type { AppRoutes, EpisodeDataT } from '../../types'
+import { Link } from 'react-router-dom';
+import type { AppRoutes, EpisodeDataT } from '../../../../types';
 
 function EpisodeLayout({
   episode,
   route,
 }: {
-  episode: EpisodeDataT
-  route: AppRoutes.Episodes
+  episode: EpisodeDataT;
+  route: AppRoutes.Episodes;
 }) {
   return (
     <>
@@ -17,7 +17,7 @@ function EpisodeLayout({
       </div>
       <Link to={`/${route}`}>Вернуться к выбору эпизода</Link>
     </>
-  )
+  );
 }
 
-export default EpisodeLayout
+export default EpisodeLayout;

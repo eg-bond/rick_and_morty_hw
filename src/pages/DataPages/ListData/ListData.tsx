@@ -1,66 +1,49 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useOutletContext, useSearchParams } from 'react-router-dom'
-import { SortingKinds, SortingKindsT, sort } from '../../../helpers'
-import s from './listData.module.css'
+import { useEffect, useState } from 'react';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
+import { SortingTypes, SortingTypesT, sort } from '../../../helpers';
+import s from './listData.module.css';
 import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
-} from '../../../types'
-import { DataItem } from './DataItem'
+} from '../../../types';
+import { DataItem } from './DataItem';
+import { useLastNodeRef } from '../../../hooks/useLastNodeRef';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
-    useOutletContext<DataPagesOutletContextT>()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [list, setList] = useState(data)
+    useOutletContext<DataPagesOutletContextT>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [list, setList] = useState(data);
 
   // infinity scroll
-  const LAST_NODE_INDEX = 10
-  const observer = useRef<IntersectionObserver>()
-  const lastNodeRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading) return
-      if (observer.current) {
-        observer.current.disconnect()
-      }
+  const LAST_NODE_INDEX = 10;
+  const lastNodeRef = useLastNodeRef({ loading, hasMore, setPageNumber });
 
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prev => prev + 1)
-        }
-      })
-      if (node) {
-        observer.current.observe(node)
-      }
-    },
-    [loading, hasMore]
-  )
-
-  function handleSorting(type: SortingKindsT) {
+  function handleSorting(type: SortingTypesT) {
     //@ts-ignore
-    setSearchParams(prev => ({ ...prev, sort: type }))
+    setSearchParams(prev => ({ ...prev, sort: type }));
   }
 
   // updates list than new data comes
   useEffect(() => {
-    setList(data)
-  }, [data])
+    setList(data);
+  }, [data]);
 
   // sorts list if 'sort' query parameter exists
   useEffect(() => {
     if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingKindsT, data)
-      setList(sorted as AllPossibleDataArraysT)
+      const sorted = sort(searchParams.get('sort') as SortingTypesT, data);
+      setList(sorted as AllPossibleDataArraysT);
     }
-  }, [searchParams])
+  }, [searchParams]);
 
   return (
     <div>
       <div className={s.sort}>
-        <button onClick={() => handleSorting(SortingKinds.DESC)}>
+        <button onClick={() => handleSorting(SortingTypes.DESC)}>
           По убыванию
         </button>
-        <button onClick={() => handleSorting(SortingKinds.ASC)}>
+        <button onClick={() => handleSorting(SortingTypes.ASC)}>
           По возрастанию
         </button>
       </div>
@@ -76,5 +59,5 @@ export function ListData() {
         />
       ))}
     </div>
-  )
+  );
 }

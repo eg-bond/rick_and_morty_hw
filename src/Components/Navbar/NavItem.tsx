@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom'
-import s from './navbar.module.css'
-import type { AppRoutes } from '../../types'
+import { NavLink } from 'react-router-dom';
+import s from './navbar.module.css';
+import type { AppRoutes } from '../../types';
 
 export function NavItem({ route, text }: { route: AppRoutes; text: string }) {
   return (
@@ -11,5 +11,5 @@ export function NavItem({ route, text }: { route: AppRoutes; text: string }) {
         {text}
       </NavLink>
     </li>
-  )
+  );
 }

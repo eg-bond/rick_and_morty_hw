@@ -1,7 +1,7 @@
-import { useId, useMemo } from 'react'
-import { dynamicCssVariables } from '../helpers'
-import s from '../css/styles.module.css'
-import type { TextInputOptionsT } from '../Types'
+import { useId, useMemo } from 'react';
+import { dynamicCssVariables } from '../helpers';
+import s from '../css/styles.module.css';
+import type { TextInputOptionsT } from '../Types';
 
 function TextInput({
   type = 'text',
@@ -16,12 +16,12 @@ function TextInput({
   disabled = false,
   asterisk = false,
 }: Partial<TextInputOptionsT>) {
-  const inputId = useId()
+  const inputId = useId();
 
   const styleVariables = useMemo(
     () => dynamicCssVariables(size, radius, error, variant),
     [size, radius, error, variant]
-  )
+  );
 
   return (
     <div className={s.inputContainer} style={styleVariables}>
@@ -44,7 +44,7 @@ function TextInput({
       />
       {error && <p className={s.error}>{error}</p>}
     </div>
-  )
+  );
 }
 
-export default TextInput
+export default TextInput;

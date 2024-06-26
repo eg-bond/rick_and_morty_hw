@@ -1,6 +1,6 @@
-import s from './navbar.module.css'
-import { NavItem } from './NavItem'
-import { AppRoutes } from '../../types'
+import s from './navbar.module.css';
+import { NavItem } from './NavItem';
+import { AppRoutes } from '../../types';
 
 export default function Navbar() {
   return (
@@ -12,5 +12,5 @@ export default function Navbar() {
         <NavItem route={AppRoutes.Characters} text='Персонажи' />
       </ul>
     </div>
-  )
+  );
 }

@@ -4,7 +4,7 @@ import {
   Colors,
   Radiuses,
   Sizes,
-} from './Types'
+} from './Types';
 
 export function dynamicCssVariables(
   size: TextInputOptionsT['size'],
@@ -12,19 +12,19 @@ export function dynamicCssVariables(
   error: TextInputOptionsT['error'] | undefined,
   variant: TextInputOptionsT['variant']
 ): React.CSSProperties & DynamicStyleT {
-  const inputSize = Sizes[size]
-  const inputRadius = Radiuses[radius]
+  const inputSize = Sizes[size];
+  const inputRadius = Radiuses[radius];
 
-  const inputValueColor = error ? Colors.Error : Colors.Value
-  const inputPlaceholderColor = error ? Colors.Error : Colors.Placeholder
+  const inputValueColor = error ? Colors.Error : Colors.Value;
+  const inputPlaceholderColor = error ? Colors.Error : Colors.Placeholder;
 
   const { inputBorderColor, inputBorderFocusedColor } = changeBorderColors(
     error,
     variant
-  )
+  );
 
   const inputBackgroundColor =
-    variant === 'filled' ? Colors.BackgroundFilled : Colors.BackgroundDefault
+    variant === 'filled' ? Colors.BackgroundFilled : Colors.BackgroundDefault;
 
   return {
     '--input-size': inputSize,
@@ -34,24 +34,24 @@ export function dynamicCssVariables(
     '--input-border-color': inputBorderColor,
     '--input-border-focused-color': inputBorderFocusedColor,
     '--input-background-color': inputBackgroundColor,
-  }
+  };
 }
 
 function changeBorderColors(
   error: TextInputOptionsT['error'] | undefined,
   variant: TextInputOptionsT['variant']
 ) {
-  let inputBorderColor: string = Colors.BorderDefault
-  let inputBorderFocusedColor: string = Colors.BorderFocused
+  let inputBorderColor: string = Colors.BorderDefault;
+  let inputBorderFocusedColor: string = Colors.BorderFocused;
 
   if (variant === 'unstyled') {
-    inputBorderColor = Colors.Transparent
-    inputBorderFocusedColor = Colors.Transparent
+    inputBorderColor = Colors.Transparent;
+    inputBorderFocusedColor = Colors.Transparent;
   }
   if (error) {
-    inputBorderColor = Colors.Error
-    inputBorderFocusedColor = Colors.Error
+    inputBorderColor = Colors.Error;
+    inputBorderFocusedColor = Colors.Error;
   }
 
-  return { inputBorderColor, inputBorderFocusedColor }
+  return { inputBorderColor, inputBorderFocusedColor };
 }

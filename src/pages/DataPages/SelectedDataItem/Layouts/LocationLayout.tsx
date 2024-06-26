@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import type { AppRoutes, LocationDataT } from '../../types'
+import { Link } from 'react-router-dom';
+import type { AppRoutes, LocationDataT } from '../../../../types';
 
 function LocationLayout({
   location,
   route,
 }: {
-  location: LocationDataT
-  route: AppRoutes.Locations
+  location: LocationDataT;
+  route: AppRoutes.Locations;
 }) {
   return (
     <>
@@ -17,7 +17,7 @@ function LocationLayout({
       </div>
       <Link to={`/${route}`}>Вернуться к выбору локации</Link>
     </>
-  )
+  );
 }
 
-export default LocationLayout
+export default LocationLayout;

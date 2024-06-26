@@ -1,30 +1,30 @@
-import { Route, Routes } from 'react-router-dom'
-import { AppRoutes } from '../../types'
-import s from './routing.module.css'
-import { PrivateRoute } from '../PrivateRoute'
-import { Suspense } from 'react'
-import { ErrorBoundary } from '../ErrorBoundary'
-import { DataPagesOutlet } from '../../pages/DataPages/DataPagesOutlet'
-import { LazyMain } from '../../pages/Main'
-import { LazyNotFound } from '../../pages/NotFound'
-import { LazyListData } from '../../pages/DataPages/ListData'
-import { LazySelectedDataItem } from '../../pages/DataPages/SelectedDataItem'
-import { LazyLogin } from '../../pages/Login'
+import { Route, Routes } from 'react-router-dom';
+import { API, AppRoutes } from '../../types';
+import s from './routing.module.css';
+import { PrivateRoute } from '../PrivateRoute';
+import { Suspense } from 'react';
+import { ErrorBoundary } from '../ErrorBoundary';
+import { DataPagesOutlet } from '../../pages/DataPages/DataPagesOutlet';
+import { LazyMain } from '../../pages/Main';
+import { LazyNotFound } from '../../pages/NotFound';
+import { LazyListData } from '../../pages/DataPages/ListData';
+import { LazySelectedDataItem } from '../../pages/DataPages/SelectedDataItem';
+import { LazyLogin } from '../../pages/Login';
 
 const dataPages = [
   {
     route: AppRoutes.Episodes,
-    apiURL: 'https://rickandmortyapi.com/api/episode',
+    apiURL: API.Url + API.Endpoints.Episode,
   },
   {
     route: AppRoutes.Locations,
-    apiURL: 'https://rickandmortyapi.com/api/location',
+    apiURL: API.Url + API.Endpoints.Location,
   },
   {
     route: AppRoutes.Characters,
-    apiURL: 'https://rickandmortyapi.com/api/character',
+    apiURL: API.Url + API.Endpoints.Character,
   },
-]
+];
 
 export default function Routing() {
   return (
@@ -72,5 +72,5 @@ export default function Routing() {
         </Routes>
       </Suspense>
     </div>
-  )
+  );
 }

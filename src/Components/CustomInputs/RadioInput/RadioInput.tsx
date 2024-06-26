@@ -1,7 +1,7 @@
-import { useId, useMemo } from 'react'
-import { dynamicCssVariables } from '../helpers'
-import s from '../css/styles.module.css'
-import type { RadioInputOptionsT } from '../Types'
+import { useId, useMemo } from 'react';
+import { dynamicCssVariables } from '../helpers';
+import s from '../css/styles.module.css';
+import type { RadioInputOptionsT } from '../Types';
 
 function RadioInput({
   type = 'radio',
@@ -17,12 +17,12 @@ function RadioInput({
   disabled = false,
   asterisk = false,
 }: Partial<RadioInputOptionsT>) {
-  const inputId = useId()
+  const inputId = useId();
 
   const styleVariables = useMemo(
     () => dynamicCssVariables(size, radius, error, variant),
     [size, radius, error, variant]
-  )
+  );
 
   return (
     <div className={s.inputContainer} style={styleVariables}>
@@ -54,7 +54,7 @@ function RadioInput({
 
       {error && <p className={s.error}>{error}</p>}
     </div>
-  )
+  );
 }
 
-export default RadioInput
+export default RadioInput;
