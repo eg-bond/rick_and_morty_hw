@@ -6,3 +6,9 @@ export enum AppRoutes {
   Login = 'login',
   NotFound = '*',
 }
+
+export enum Pathnames {
+  Locations = '/locations',
+  Episodes = '/episodes',
+  Characters = '/characters',
+}

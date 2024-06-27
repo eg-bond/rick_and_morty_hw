@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useOutletContext, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useOutletContext,
+  useSearchParams,
+} from 'react-router-dom';
 import { SortingTypes, sort } from '@/utils/sort';
 import s from './listData.module.css';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
+import { Flex } from '@mantine/core';
 import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
@@ -14,9 +19,10 @@ export function ListData() {
     useOutletContext<DataPagesOutletContextT>();
   const [searchParams, setSearchParams] = useSearchParams();
   const [list, setList] = useState(data);
+  const location = useLocation();
 
   // infinity scroll
-  const LAST_NODE_INDEX = 10;
+  const LAST_NODE_INDEX = 15;
   const lastNodeRef = useLastNodeRef({ loading, hasMore, setPageNumber });
 
   function handleSorting(type: SortingTypes | null) {
@@ -36,7 +42,6 @@ export function ListData() {
       setList(sorted as AllPossibleDataArraysT);
     }
   }, [searchParams]);
-
   return (
     <div>
       <div className={s.sort}>
@@ -50,14 +55,22 @@ export function ListData() {
 
       {loading && <div>...Loading data</div>}
 
-      {list.map((item, i) => (
-        <DataItem
-          item={item}
-          isLastNode={i > list.length - LAST_NODE_INDEX}
-          lastNodeRef={lastNodeRef}
-          key={item.id}
-        />
-      ))}
+      <Flex
+        gap='lg'
+        justify='center'
+        align='flex-start'
+        direction='row'
+        wrap='wrap'>
+        {list.map((item, i) => (
+          <DataItem
+            item={item}
+            isLastNode={i > list.length - LAST_NODE_INDEX}
+            lastNodeRef={lastNodeRef}
+            pathname={location.pathname}
+            key={item.id}
+          />
+        ))}
+      </Flex>
     </div>
   );
 }
