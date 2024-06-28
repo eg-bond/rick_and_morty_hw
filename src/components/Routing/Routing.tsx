@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { PrivateRoute } from '@/component/PrivateRoute';
+import { PrivateRoute } from '@/components/PrivateRoute';
 import { Suspense } from 'react';
-import { ErrorBoundary } from '@/component/ErrorBoundary';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { DataPagesOutlet } from '@/pages/DataPages/DataPagesOutlet';
 import { LazyMain } from '@/pages/Main';
 import { LazyNotFound } from '@/pages/NotFound';
