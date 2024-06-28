@@ -1,6 +1,6 @@
-import { AuthStatus } from '@/components/AuthStatus';
-import { Navbar } from '@/components/Navbar';
-import { Routing } from '@/components/Routing';
+import { AuthStatus } from '@/component/AuthStatus';
+import { Navbar } from '@/component/Navbar';
+import { Routing } from '@/component/Routing';
 import { AuthProvider } from '@/context/AuthProvider';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';

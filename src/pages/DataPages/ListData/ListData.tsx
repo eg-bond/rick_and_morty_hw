@@ -8,7 +8,7 @@ import { SortingTypes, sort } from '@/utils/sort';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
 import { Flex } from '@mantine/core';
-import { SortingMenu } from '@/components/SortingMenu';
+import { SortingMenu } from '@/component/SortingMenu';
 import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
