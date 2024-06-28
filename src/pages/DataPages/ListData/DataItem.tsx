@@ -29,7 +29,12 @@ export function DataItem({
 
   return (
     <div className={s.item} ref={isLastNode ? lastNodeRef : undefined}>
-      <Card shadow='sm' padding='lg' radius='md' withBorder>
+      <Card
+        style={{ width: 360 }}
+        shadow='sm'
+        padding='lg'
+        radius='md'
+        withBorder>
         <Card.Section>
           <Image
             fit='fill'

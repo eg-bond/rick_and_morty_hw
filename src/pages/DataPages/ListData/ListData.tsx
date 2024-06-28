@@ -5,10 +5,10 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { SortingTypes, sort } from '@/utils/sort';
-import s from './listData.module.css';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
 import { Flex } from '@mantine/core';
+import { SortingMenu } from '@/components/SortingMenu';
 import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
@@ -25,11 +25,6 @@ export function ListData() {
   const LAST_NODE_INDEX = 15;
   const lastNodeRef = useLastNodeRef({ loading, hasMore, setPageNumber });
 
-  function handleSorting(type: SortingTypes | null) {
-    //@ts-ignore
-    setSearchParams(prev => ({ ...prev, sort: type }));
-  }
-
   // updates list than new data comes
   useEffect(() => {
     setList(data);
@@ -44,20 +39,13 @@ export function ListData() {
   }, [searchParams]);
   return (
     <div>
-      <div className={s.sort}>
-        <button onClick={() => handleSorting(SortingTypes.DESC)}>
-          По убыванию
-        </button>
-        <button onClick={() => handleSorting(SortingTypes.ASC)}>
-          По возрастанию
-        </button>
-      </div>
+      <SortingMenu setSearchParams={setSearchParams} />
 
       {loading && <div>...Loading data</div>}
 
       <Flex
         gap='lg'
-        justify='center'
+        justify='space-between'
         align='flex-start'
         direction='row'
         wrap='wrap'>
