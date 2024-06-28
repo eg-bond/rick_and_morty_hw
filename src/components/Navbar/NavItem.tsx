@@ -11,6 +11,7 @@ export function NavItem({ route, text }: NavItemProps) {
   return (
     <li>
       <NavLink
+        style={{ textDecoration: 'none' }}
         className={({ isActive }) => (isActive ? s.red : undefined)}
         to={`${route}`}>
         {text}
