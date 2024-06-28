@@ -1,6 +1,7 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
-import { AppRoutes } from '@/types/routesTypes';
+import { Button, Flex } from '@mantine/core';
+import { capitelizeFirstLetter } from '@/utils/capitalizeFirstLetter';
 
 export const AuthStatus = () => {
   const auth = useAuth();
@@ -12,17 +13,28 @@ export const AuthStatus = () => {
 
   if (auth?.user === null) {
     return (
-      <>
-        <p>You are not logged in.</p>
-        <NavLink to={AppRoutes.Login}>Войти</NavLink>
-      </>
+      <div style={{ width: '100px' }}>
+        <Button color='green' onClick={() => navigate('/login')}>
+          Войти
+        </Button>
+      </div>
     );
   }
 
   return (
-    <p>
-      Welcome user {auth?.user}
-      <button onClick={handleSignOut}>Выйти</button>
-    </p>
+    <Flex
+      style={{ width: '100px' }}
+      direction={'column'}
+      justify='center'
+      align={'center'}>
+      <p style={{ marginTop: 0 }}>
+        <span style={{ fontWeight: 'bold' }}>
+          {capitelizeFirstLetter(auth?.user)}
+        </span>
+      </p>
+      <Button color='red' onClick={handleSignOut}>
+        Выйти
+      </Button>
+    </Flex>
   );
 };
