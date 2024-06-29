@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react';
-import {
-  useLocation,
-  useOutletContext,
-  useSearchParams,
-} from 'react-router-dom';
-import { SortingTypes, sort } from '@/utils/sort';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
 import { Flex, Loader } from '@mantine/core';
 import { SortingMenu } from '@/components/SortingMenu';
-import type {
-  AllPossibleDataArraysT,
-  DataPagesOutletContextT,
-} from '@/types/dataPagesTypes';
+import type { DataPagesOutletContextT } from '@/types/dataPagesTypes';
 import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
     useOutletContext<DataPagesOutletContextT>();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [list, setList] = useState(data);
   const location = useLocation();
 
@@ -31,17 +22,10 @@ export function ListData() {
     setList(data);
   }, [data]);
 
-  // sorts list if 'sort' query parameter exists
-  useEffect(() => {
-    if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingTypes, data);
-      setList(sorted as AllPossibleDataArraysT);
-    }
-  }, [searchParams]);
   return (
     <div>
       <ScrollToTop />
-      <SortingMenu setSearchParams={setSearchParams} />
+      <SortingMenu setList={setList} data={data} />
 
       <Flex
         justify='space-between'
