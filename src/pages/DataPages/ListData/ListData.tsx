@@ -7,7 +7,7 @@ import {
 import { SortingTypes, sort } from '@/utils/sort';
 import { DataItem } from './DataItem';
 import { useLastNodeRef } from '@/hooks/useLastNodeRef';
-import { Flex } from '@mantine/core';
+import { Flex, Loader } from '@mantine/core';
 import { SortingMenu } from '@/components/SortingMenu';
 import type {
   AllPossibleDataArraysT,
@@ -43,8 +43,6 @@ export function ListData() {
       <ScrollToTop />
       <SortingMenu setSearchParams={setSearchParams} />
 
-      {loading && <div>...Loading data</div>}
-
       <Flex
         justify='space-between'
         columnGap={'sm'}
@@ -61,6 +59,12 @@ export function ListData() {
           />
         ))}
       </Flex>
+
+      {loading && (
+        <Flex justify='center' align='center'>
+          <Loader color='blue' size={50} />
+        </Flex>
+      )}
     </div>
   );
 }
