@@ -13,6 +13,7 @@ import type {
   AllPossibleDataArraysT,
   DataPagesOutletContextT,
 } from '@/types/dataPagesTypes';
+import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
@@ -39,12 +40,14 @@ export function ListData() {
   }, [searchParams]);
   return (
     <div>
+      <ScrollToTop />
       <SortingMenu setSearchParams={setSearchParams} />
 
       {loading && <div>...Loading data</div>}
 
       <Flex
         justify='space-between'
+        columnGap={'sm'}
         align='flex-start'
         direction='row'
         wrap='wrap'>
