@@ -24,7 +24,6 @@ export function ListData() {
 
   return (
     <div>
-      <ScrollToTop />
       <SortingMenu setList={setList} data={data} />
 
       <Flex
@@ -49,6 +48,8 @@ export function ListData() {
           <Loader color='blue' size={50} />
         </Flex>
       )}
+
+      <ScrollToTop />
     </div>
   );
 }

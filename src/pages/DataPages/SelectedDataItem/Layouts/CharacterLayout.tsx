@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '@/types/routesTypes';
 import type { CharactersDataT } from '@/types/dataPagesTypes';
+import { Button, Table } from '@mantine/core';
 
 interface CharacterLayoutProps {
   character: CharactersDataT;
@@ -10,14 +11,26 @@ interface CharacterLayoutProps {
 function CharacterLayout({ character, route }: CharacterLayoutProps) {
   return (
     <>
-      <div>
-        <img src={character.image} alt={character.name} />
-        <p>Имя: {character.name}</p>
-        <p>Статус: {character.status}</p>
-        <p>Вид: {character.species}</p>
-        <p>Пол: {character.gender}</p>
-      </div>
-      <Link to={`/${route}`}>Вернуться к выбору персонажа</Link>
+      <Table withColumnBorders withTableBorder>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Имя</Table.Th>
+            <Table.Th>Статус</Table.Th>
+            <Table.Th>Вид</Table.Th>
+            <Table.Th>Пол</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Td>{character.name}</Table.Td>
+          <Table.Td>{character.status}</Table.Td>
+          <Table.Td>{character.species}</Table.Td>
+          <Table.Td>{character.gender}</Table.Td>
+        </Table.Tbody>
+      </Table>
+
+      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+        Вернуться к выбору персонажа
+      </Button>
     </>
   );
 }

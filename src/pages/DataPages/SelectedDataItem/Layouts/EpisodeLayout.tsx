@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '@/types/routesTypes';
 import type { EpisodeDataT } from '@/types/dataPagesTypes';
 import { getSeasonAndEpisode } from '@/utils/getSeasonAndEpisode';
+import { Button, Table } from '@mantine/core';
 
 interface EpisodeLayoutProps {
   episode: EpisodeDataT;
@@ -13,13 +14,26 @@ function EpisodeLayout({ episode, route }: EpisodeLayoutProps) {
 
   return (
     <>
-      <div>
-        <p>Название серии: {episode.name}</p>
-        <p>Дата выхода серии: {episode.air_date}</p>
-        <p>Сезон: {season}</p>
-        <p>Серия: {ep}</p>
-      </div>
-      <Link to={`/${route}`}>Вернуться к выбору эпизода</Link>
+      <Table withColumnBorders withTableBorder>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Название серии</Table.Th>
+            <Table.Th>Дата выхода серии</Table.Th>
+            <Table.Th>Сезон</Table.Th>
+            <Table.Th>Серия</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Td>{episode.name}</Table.Td>
+          <Table.Td>{episode.air_date}</Table.Td>
+          <Table.Td>{season}</Table.Td>
+          <Table.Td>{ep}</Table.Td>
+        </Table.Tbody>
+      </Table>
+
+      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+        Вернуться к выбору эпизода
+      </Button>
     </>
   );
 }

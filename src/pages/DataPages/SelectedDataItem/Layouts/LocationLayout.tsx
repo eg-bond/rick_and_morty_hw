@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '@/types/routesTypes';
+import { Button, Table } from '@mantine/core';
 import type { LocationDataT } from '@/types/dataPagesTypes';
 
 interface LocationLayoutProps {
@@ -10,12 +11,24 @@ interface LocationLayoutProps {
 function LocationLayout({ location, route }: LocationLayoutProps) {
   return (
     <>
-      <div>
-        <p>Название: {location.name}</p>
-        <p>Тип: {location.type}</p>
-        <p>Измерение: {location.dimension}</p>
-      </div>
-      <Link to={`/${route}`}>Вернуться к выбору локации</Link>
+      <Table withColumnBorders withTableBorder>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Название</Table.Th>
+            <Table.Th>Тип</Table.Th>
+            <Table.Th>Измерение</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Td>{location.name}</Table.Td>
+          <Table.Td>{location.type}</Table.Td>
+          <Table.Td>{location.dimension}</Table.Td>
+        </Table.Tbody>
+      </Table>
+
+      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+        Вернуться к выбору локации
+      </Button>
     </>
   );
 }
