@@ -6,6 +6,7 @@ import { Flex, Loader } from '@mantine/core';
 import { SortingMenu } from '@/components/SortingMenu';
 import type { DataPagesOutletContextT } from '@/types/dataPagesTypes';
 import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
+import { Pathnames } from '@/types/routesTypes';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
@@ -37,7 +38,7 @@ export function ListData() {
             item={item}
             isLastNode={i > list.length - LAST_NODE_INDEX}
             lastNodeRef={lastNodeRef}
-            pathname={location.pathname}
+            pathname={location.pathname as Pathnames}
             key={item.id}
           />
         ))}

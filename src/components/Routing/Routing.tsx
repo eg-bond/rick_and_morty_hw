@@ -10,7 +10,6 @@ import { LazySelectedDataItem } from '@/pages/DataPages/SelectedDataItem';
 import { LazyLogin } from '@/pages/Login';
 import { API } from '@/types/apiTypes';
 import { AppRoutes } from '@/types/routesTypes';
-import s from './routing.module.css';
 
 const dataPages = [
   {

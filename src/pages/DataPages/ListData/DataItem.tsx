@@ -23,7 +23,7 @@ export function DataItem({
   const imgSrc = (pathname: Pathnames) => {
     if (pathname === Pathnames.Episodes) return episodesLogo;
     if (pathname === Pathnames.Locations) return locationsLogo;
-    return item.image;
+    if ('image' in item) return item.image;
   };
 
   return (
