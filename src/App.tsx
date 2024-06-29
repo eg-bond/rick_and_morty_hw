@@ -8,8 +8,8 @@ function App() {
   return (
     <MantineProvider>
       <AuthProvider>
-        <Container fluid>
-          <Header />
+        <Header />
+        <Container fluid mih={'90vh'} pt={'1rem'} bg='#67d9fd'>
           <Routing />
         </Container>
       </AuthProvider>

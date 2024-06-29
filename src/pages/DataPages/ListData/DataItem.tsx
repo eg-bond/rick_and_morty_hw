@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import type { AllPossibleDataT } from '@/types/dataPagesTypes';
 import { Card, Image, Text, Button, Group } from '@mantine/core';
-import s from './listData.module.css';
 import episodesLogo from '@/assets/images/episodes_logo.png';
 import locationsLogo from '@/assets/images/locations_logo.png';
 import { Pathnames } from '@/types/routesTypes';
@@ -28,13 +27,10 @@ export function DataItem({
   };
 
   return (
-    <div className={s.item} ref={isLastNode ? lastNodeRef : undefined}>
-      <Card
-        style={{ width: 360 }}
-        shadow='sm'
-        padding='lg'
-        radius='md'
-        withBorder>
+    <div
+      style={{ margin: '1rem 0' }}
+      ref={isLastNode ? lastNodeRef : undefined}>
+      <Card style={{ width: 360 }} shadow='sm' radius='md' withBorder>
         <Card.Section>
           <Image
             fit='fill'

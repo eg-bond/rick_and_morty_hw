@@ -5,7 +5,8 @@ import { Navbar } from '../Navbar';
 export function Header() {
   return (
     <Flex
-      gap='lg'
+      style={{ backgroundColor: '#eddf81', padding: '0 1rem' }}
+      h={'10vh'}
       justify='space-between'
       // columnGap={'10vw'}
       align='center'

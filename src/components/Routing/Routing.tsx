@@ -29,49 +29,47 @@ const dataPages = [
 
 export default function Routing() {
   return (
-    <div className={s.content}>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path={AppRoutes.Main} element={<LazyMain />} />
-          <Route path={AppRoutes.NotFound} element={<LazyNotFound />} />
-          <Route
-            path={AppRoutes.Login}
-            element={
-              <ErrorBoundary>
-                <LazyLogin />
-              </ErrorBoundary>
-            }
-          />
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <Routes>
+        <Route path={AppRoutes.Main} element={<LazyMain />} />
+        <Route path={AppRoutes.NotFound} element={<LazyNotFound />} />
+        <Route
+          path={AppRoutes.Login}
+          element={
+            <ErrorBoundary>
+              <LazyLogin />
+            </ErrorBoundary>
+          }
+        />
 
-          {dataPages.map(({ route, apiURL }) => (
+        {dataPages.map(({ route, apiURL }) => (
+          <Route
+            key={route}
+            path={route}
+            element={<DataPagesOutlet apiURL={apiURL} route={route} />}>
             <Route
-              key={route}
-              path={route}
-              element={<DataPagesOutlet apiURL={apiURL} route={route} />}>
-              <Route
-                index
-                element={
-                  <PrivateRoute>
-                    <ErrorBoundary>
-                      <LazyListData />
-                    </ErrorBoundary>
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path=':id'
-                element={
-                  <PrivateRoute>
-                    <ErrorBoundary>
-                      <LazySelectedDataItem />
-                    </ErrorBoundary>
-                  </PrivateRoute>
-                }
-              />
-            </Route>
-          ))}
-        </Routes>
-      </Suspense>
-    </div>
+              index
+              element={
+                <PrivateRoute>
+                  <ErrorBoundary>
+                    <LazyListData />
+                  </ErrorBoundary>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=':id'
+              element={
+                <PrivateRoute>
+                  <ErrorBoundary>
+                    <LazySelectedDataItem />
+                  </ErrorBoundary>
+                </PrivateRoute>
+              }
+            />
+          </Route>
+        ))}
+      </Routes>
+    </Suspense>
   );
 }

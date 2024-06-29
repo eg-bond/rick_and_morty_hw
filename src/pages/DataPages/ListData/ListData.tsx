@@ -44,7 +44,6 @@ export function ListData() {
       {loading && <div>...Loading data</div>}
 
       <Flex
-        gap='lg'
         justify='space-between'
         align='flex-start'
         direction='row'
