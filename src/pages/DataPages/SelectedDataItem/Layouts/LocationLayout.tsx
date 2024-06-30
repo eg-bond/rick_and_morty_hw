@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '@/types/routesTypes';
 import { Button, Table } from '@mantine/core';
 import type { LocationDataT } from '@/types/dataPagesTypes';
+import { LayoutsStyles } from '@/types/stylesTypes';
 
 interface LocationLayoutProps {
   location: LocationDataT;
@@ -26,7 +27,11 @@ function LocationLayout({ location, route }: LocationLayoutProps) {
         </Table.Tbody>
       </Table>
 
-      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+      <Button
+        to={`/${route}`}
+        color={LayoutsStyles.CLR}
+        mt={LayoutsStyles.MT}
+        component={Link}>
         Вернуться к выбору локации
       </Button>
     </>

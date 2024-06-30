@@ -1,7 +1,7 @@
 import { Location, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
 import { FormEvent } from 'react';
-import { Button, Flex, TextInput } from '@mantine/core';
+import { Button, TextInput } from '@mantine/core';
 
 export function Login() {
   const auth = useAuth();

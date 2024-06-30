@@ -3,6 +3,7 @@ import { AppRoutes } from '@/types/routesTypes';
 import type { EpisodeDataT } from '@/types/dataPagesTypes';
 import { getSeasonAndEpisode } from '@/utils/getSeasonAndEpisode';
 import { Button, Table } from '@mantine/core';
+import { LayoutsStyles } from '@/types/stylesTypes';
 
 interface EpisodeLayoutProps {
   episode: EpisodeDataT;
@@ -31,7 +32,11 @@ function EpisodeLayout({ episode, route }: EpisodeLayoutProps) {
         </Table.Tbody>
       </Table>
 
-      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+      <Button
+        to={`/${route}`}
+        color={LayoutsStyles.CLR}
+        mt={LayoutsStyles.MT}
+        component={Link}>
         Вернуться к выбору эпизода
       </Button>
     </>

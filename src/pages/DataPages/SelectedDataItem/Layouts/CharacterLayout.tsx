@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '@/types/routesTypes';
 import type { CharactersDataT } from '@/types/dataPagesTypes';
 import { Button, Table } from '@mantine/core';
+import { LayoutsStyles } from '@/types/stylesTypes';
 
 interface CharacterLayoutProps {
   character: CharactersDataT;
@@ -28,7 +29,11 @@ function CharacterLayout({ character, route }: CharacterLayoutProps) {
         </Table.Tbody>
       </Table>
 
-      <Button to={`/${route}`} color='orange' mt={'1rem'} component={Link}>
+      <Button
+        to={`/${route}`}
+        color={LayoutsStyles.CLR}
+        mt={LayoutsStyles.MT}
+        component={Link}>
         Вернуться к выбору персонажа
       </Button>
     </>

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
 import { Box, Button, Flex, Text } from '@mantine/core';
-import { NAVBAR_FB } from '../Navbar/Navbar';
+import { NavbarStyles } from '@/types/stylesTypes';
 
 export const AuthStatus = () => {
   const auth = useAuth();
@@ -29,7 +29,7 @@ export const AuthStatus = () => {
 
   return (
     <Flex
-      style={{ flexBasis: NAVBAR_FB }}
+      style={{ flexBasis: NavbarStyles.FB }}
       rowGap='sm'
       direction={'column'}
       justify='center'
