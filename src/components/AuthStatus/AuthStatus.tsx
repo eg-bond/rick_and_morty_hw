@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
-import { Button, Flex } from '@mantine/core';
-import { capitelizeFirstLetter } from '@/utils/capitalizeFirstLetter';
+import { Box, Button, Flex, Text } from '@mantine/core';
+import { NAVBAR_FB } from '../Navbar/Navbar';
 
 export const AuthStatus = () => {
   const auth = useAuth();
@@ -11,30 +11,49 @@ export const AuthStatus = () => {
     auth?.signOut(() => navigate('/'));
   };
 
-  if (auth?.user === null) {
+  function EnterBtn() {
     return (
-      <div style={{ width: '100px' }}>
-        <Button color='green' onClick={() => navigate('/login')}>
-          Войти
-        </Button>
-      </div>
+      <Button color='green' onClick={() => navigate('/login')}>
+        Войти
+      </Button>
+    );
+  }
+
+  function ExitBtn() {
+    return (
+      <Button color='red' onClick={handleSignOut}>
+        Выйти
+      </Button>
     );
   }
 
   return (
     <Flex
-      style={{ width: '100px' }}
+      style={{ flexBasis: NAVBAR_FB }}
+      rowGap='sm'
       direction={'column'}
       justify='center'
-      align={'center'}>
-      <p style={{ marginTop: 0 }}>
-        <span style={{ fontWeight: 'bold' }}>
-          {capitelizeFirstLetter(auth?.user)}
-        </span>
-      </p>
-      <Button color='red' onClick={handleSignOut}>
-        Выйти
-      </Button>
+      align='flex-end'>
+      {/* if user is logged in */}
+      {auth?.user && (
+        <>
+          <Box w={125}>
+            <Text
+              tt='capitalize'
+              size='lg'
+              fw='bold'
+              ta='end'
+              truncate='end'
+              variant='gradient'
+              gradient={{ from: 'grape', to: 'red', deg: 90 }}>
+              {auth?.user}
+            </Text>
+          </Box>
+          <ExitBtn />
+        </>
+      )}
+      {/* if user is not logged in */}
+      {!auth?.user && <EnterBtn />}
     </Flex>
   );
 };
