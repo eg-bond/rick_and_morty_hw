@@ -1,80 +1,56 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useOutletContext, useSearchParams } from 'react-router-dom'
-import { SortingKinds, SortingKindsT, sort } from '../../../helpers'
-import s from './listData.module.css'
-import type {
-  AllPossibleDataArraysT,
-  DataPagesOutletContextT,
-} from '../../../types'
-import { DataItem } from './DataItem'
+import { useEffect, useState } from 'react';
+import { useLocation, useOutletContext } from 'react-router-dom';
+import { DataItem } from './DataItem';
+import { useLastNodeRef } from '@/hooks/useLastNodeRef';
+import { Flex, Loader } from '@mantine/core';
+import { SortingMenu } from '@/components/SortingMenu';
+import type { DataPagesOutletContextT } from '@/types/dataPagesTypes';
+import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
+import { Pathnames } from '@/types/routesTypes';
 
 export function ListData() {
   const { data, loading, hasMore, setPageNumber } =
-    useOutletContext<DataPagesOutletContextT>()
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [list, setList] = useState(data)
+    useOutletContext<DataPagesOutletContextT>();
+  const [list, setList] = useState(data);
+  const location = useLocation();
 
   // infinity scroll
-  const LAST_NODE_INDEX = 10
-  const observer = useRef<IntersectionObserver>()
-  const lastNodeRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading) return
-      if (observer.current) {
-        observer.current.disconnect()
-      }
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prev => prev + 1)
-        }
-      })
-      if (node) {
-        observer.current.observe(node)
-      }
-    },
-    [loading, hasMore]
-  )
-
-  function handleSorting(type: SortingKindsT) {
-    //@ts-ignore
-    setSearchParams(prev => ({ ...prev, sort: type }))
-  }
+  const LAST_NODE_INDEX = 15;
+  const lastNodeRef = useLastNodeRef({ loading, hasMore, setPageNumber });
 
   // updates list than new data comes
   useEffect(() => {
-    setList(data)
-  }, [data])
-
-  // sorts list if 'sort' query parameter exists
-  useEffect(() => {
-    if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingKindsT, data)
-      setList(sorted as AllPossibleDataArraysT)
-    }
-  }, [searchParams])
+    setList(data);
+  }, [data]);
 
   return (
     <div>
-      <div className={s.sort}>
-        <button onClick={() => handleSorting(SortingKinds.DESC)}>
-          По убыванию
-        </button>
-        <button onClick={() => handleSorting(SortingKinds.ASC)}>
-          По возрастанию
-        </button>
-      </div>
+      <SortingMenu setList={setList} data={data} />
 
-      {loading && <div>...Loading data</div>}
+      <Flex
+        justify='space-between'
+        columnGap={'sm'}
+        align='flex-start'
+        direction='row'
+        wrap='wrap'>
+        {list.map((item, i) => (
+          <DataItem
+            item={item}
+            isLastNode={i > list.length - LAST_NODE_INDEX}
+            lastNodeRef={lastNodeRef}
+            pathname={location.pathname as Pathnames}
+            key={item.id}
+          />
+        ))}
+      </Flex>
 
-      {list.map((item, i) => (
-        <DataItem
-          item={item}
-          isLastNode={i > list.length - LAST_NODE_INDEX}
-          lastNodeRef={lastNodeRef}
-          key={item.id}
-        />
-      ))}
+      {loading && (
+        <Flex justify='center' align='center'>
+          <Loader color='blue' size={50} />
+        </Flex>
+      )}
+
+      <ScrollToTop />
     </div>
-  )
+  );
 }

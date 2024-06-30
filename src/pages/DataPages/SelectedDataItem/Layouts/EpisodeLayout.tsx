@@ -1,23 +1,46 @@
-import { Link } from 'react-router-dom'
-import type { AppRoutes, EpisodeDataT } from '../../types'
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '@/types/routesTypes';
+import type { EpisodeDataT } from '@/types/dataPagesTypes';
+import { getSeasonAndEpisode } from '@/utils/getSeasonAndEpisode';
+import { Button, Table } from '@mantine/core';
+import { LayoutsStyles } from '@/types/stylesTypes';
 
-function EpisodeLayout({
-  episode,
-  route,
-}: {
-  episode: EpisodeDataT
-  route: AppRoutes.Episodes
-}) {
-  return (
-    <>
-      <div>
-        <p>Название серии: {episode.name}</p>
-        <p>Дата выхода серии: {episode.air_date}</p>
-        <p>Код эпизода: {episode.episode}</p>
-      </div>
-      <Link to={`/${route}`}>Вернуться к выбору эпизода</Link>
-    </>
-  )
+interface EpisodeLayoutProps {
+  episode: EpisodeDataT;
+  route: AppRoutes.Episodes;
 }
 
-export default EpisodeLayout
+function EpisodeLayout({ episode, route }: EpisodeLayoutProps) {
+  const { season, ep } = getSeasonAndEpisode(episode.episode);
+
+  return (
+    <>
+      <Table withColumnBorders withTableBorder>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Название серии</Table.Th>
+            <Table.Th>Дата выхода серии</Table.Th>
+            <Table.Th>Сезон</Table.Th>
+            <Table.Th>Серия</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Td>{episode.name}</Table.Td>
+          <Table.Td>{episode.air_date}</Table.Td>
+          <Table.Td>{season}</Table.Td>
+          <Table.Td>{ep}</Table.Td>
+        </Table.Tbody>
+      </Table>
+
+      <Button
+        to={`/${route}`}
+        color={LayoutsStyles.CLR}
+        mt={LayoutsStyles.MT}
+        component={Link}>
+        Вернуться к выбору эпизода
+      </Button>
+    </>
+  );
+}
+
+export default EpisodeLayout;
