@@ -417,7 +417,8 @@
     {
       "src": "/icons/android/android-launchericon-192-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "/icons/android/android-launchericon-144-144.png",
