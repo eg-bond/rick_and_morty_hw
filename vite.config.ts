@@ -18,6 +18,14 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       manifest,
+      strategies: 'injectManifest',
+      injectManifest: {
+        injectionPoint: undefined,
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
     }),
   ],
   resolve: {
