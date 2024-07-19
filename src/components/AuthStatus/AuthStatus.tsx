@@ -2,18 +2,19 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthProvider';
 import { Box, Button, Flex, Text } from '@mantine/core';
 import { NavbarStyles } from '@/types/stylesTypes';
+import { AppRoutes } from '@/types/routesTypes';
 
 export const AuthStatus = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    auth?.signOut(() => navigate('/'));
+    auth?.signOut(() => navigate(AppRoutes.Main));
   };
 
   function EnterBtn() {
     return (
-      <Button color='green' onClick={() => navigate('/login')}>
+      <Button color='green' onClick={() => navigate('/' + AppRoutes.Login)}>
         Войти
       </Button>
     );
