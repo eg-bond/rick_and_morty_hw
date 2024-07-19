@@ -9,6 +9,9 @@ const menuItems = [
   { text: 'По убыванию', sortType: SortingTypes.DESC },
 ];
 
+const PARAMS = {
+  SORT: 'sort',
+};
 interface SortingMenuProps {
   setList: React.Dispatch<React.SetStateAction<AllPossibleDataArraysT>>;
   data: AllPossibleDataArraysT;
@@ -27,7 +30,7 @@ export function SortingMenu({ setList, data }: SortingMenuProps) {
 
   // sets proper targetText than searchParams changed
   useEffect(() => {
-    const sortParam = searchParams.get('sort');
+    const sortParam = searchParams.get(PARAMS.SORT);
     if (sortParam === null || sortParam === SortingTypes.ASC) {
       setTargetText(menuItems[0].text);
     } else {
@@ -37,8 +40,8 @@ export function SortingMenu({ setList, data }: SortingMenuProps) {
 
   // sorts list if 'sort' query parameter exists
   useEffect(() => {
-    if (searchParams.get('sort') !== null) {
-      const sorted = sort(searchParams.get('sort') as SortingTypes, data);
+    if (searchParams.get(PARAMS.SORT) !== null) {
+      const sorted = sort(searchParams.get(PARAMS.SORT) as SortingTypes, data);
       setList(sorted as AllPossibleDataArraysT);
     }
   }, [searchParams]);
